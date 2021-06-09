@@ -1,8 +1,6 @@
-package com.dispy.acnhdemo.function
+package com.dispy.acnhdemo.bean
 
 import com.google.gson.annotations.SerializedName
-
-typealias hashMapVillagers = HashMap<String, Villager>
 
 data class Villager (
     val id: Long,

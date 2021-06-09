@@ -44,7 +44,6 @@ class VillagersFragment : Fragment() {
             getVillagers().observe(viewLifecycleOwner, { data ->
                 villagerAdapter.swapItems(data)
             })
-            getData()
         }
 
         return view

@@ -3,6 +3,7 @@ package com.dispy.acnhdemo.function
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dispy.acnhdemo.bean.Villager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.ResponseBody
@@ -28,10 +29,6 @@ class VillagerViewModel {
     private val villagers: MutableLiveData<List<Villager>> = MutableLiveData()
 
     fun getVillagers(): LiveData<List<Villager>> {
-        return villagers
-    }
-
-    fun getData() {
         val call: Call<ResponseBody> = acnhService.getVillagers()
         Log.d("Villagers", call.request().toString())
         call.enqueue(object : Callback<ResponseBody> {
@@ -54,6 +51,7 @@ class VillagerViewModel {
             }
 
         })
+        return villagers
     }
 
 }
