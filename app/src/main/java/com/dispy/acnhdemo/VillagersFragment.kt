@@ -4,11 +4,11 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dispy.acnhdemo.dummy.DummyContent
+import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
+import com.dispy.acnhdemo.function.VillagerViewModel
 
 /**
  * A fragment representing a list of Items.
@@ -27,18 +27,26 @@ class VillagersFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_villagers_list, container, false)
+        val binding = FragmentVillagersListBinding.inflate(layoutInflater)
+        val view = binding.root
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = VillagersRecyclerViewAdapter(DummyContent.ITEMS)
+        val villagerAdapter = VillagersRecyclerViewAdapter(ArrayList())
+        with(binding.listVillagers) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
             }
+            adapter = villagerAdapter
         }
+
+        val viewModel = VillagerViewModel()
+        with(viewModel) {
+            getVillagers().observe(viewLifecycleOwner, { data ->
+                villagerAdapter.swapItems(data)
+            })
+            getData()
+        }
+
         return view
     }
 

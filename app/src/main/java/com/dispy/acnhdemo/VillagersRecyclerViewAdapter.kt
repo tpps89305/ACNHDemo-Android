@@ -6,13 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.dispy.acnhdemo.dummy.DummyContent.DummyItem
+import com.dispy.acnhdemo.function.Villager
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
-class VillagersRecyclerViewAdapter(private val values: List<DummyItem>)
+class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>)
     : RecyclerView.Adapter<VillagersRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,12 +18,17 @@ class VillagersRecyclerViewAdapter(private val values: List<DummyItem>)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = villagers[position]
+        holder.idView.text = item.fileName
+        holder.contentView.text = item.name.nameTWzh
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = villagers.size
+
+    fun swapItems(newItems: List<Villager>) {
+        villagers.addAll(newItems)
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val idView: TextView = view.findViewById(R.id.item_number)
