@@ -29,6 +29,8 @@ class VillagerViewModel {
     private val villagers: MutableLiveData<List<Villager>> = MutableLiveData()
 
     fun getVillagers(): LiveData<List<Villager>> {
+        if (villagers.value != null)
+            return villagers
         val call: Call<ResponseBody> = acnhService.getVillagers()
         Log.d("Villagers", call.request().toString())
         call.enqueue(object : Callback<ResponseBody> {

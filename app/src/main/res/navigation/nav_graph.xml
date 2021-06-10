@@ -9,6 +9,17 @@
         android:id="@+id/villagersFragment"
         android:name="com.dispy.acnhdemo.VillagersFragment"
         android:label="fragment_villagers_list"
-        tools:layout="@layout/fragment_villagers_list" />
+        tools:layout="@layout/fragment_villagers_list" >
+        <action
+            android:id="@+id/action_show_villager_detail"
+            app:destination="@id/villagerrDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/villagerrDetailFragment"
+        android:name="com.dispy.acnhdemo.VillagerDetailFragment"
+        android:label="fragment_villagerr_detail"
+        tools:layout="@layout/fragment_villager_detail" />
 
 </navigation>

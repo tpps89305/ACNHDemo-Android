@@ -1,12 +1,13 @@
 package com.dispy.acnhdemo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
 import com.dispy.acnhdemo.function.VillagerViewModel
 
@@ -16,6 +17,8 @@ import com.dispy.acnhdemo.function.VillagerViewModel
 class VillagersFragment : Fragment() {
 
     private var columnCount = 1
+    private val villagerAdapter = VillagersRecyclerViewAdapter(ArrayList())
+    private val viewModel = VillagerViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +28,12 @@ class VillagersFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val binding = FragmentVillagersListBinding.inflate(layoutInflater)
-        val view = binding.root
 
-        val villagerAdapter = VillagersRecyclerViewAdapter(ArrayList())
         with(binding.listVillagers) {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
@@ -39,14 +42,21 @@ class VillagersFragment : Fragment() {
             adapter = villagerAdapter
         }
 
-        val viewModel = VillagerViewModel()
         with(viewModel) {
             getVillagers().observe(viewLifecycleOwner, { data ->
                 villagerAdapter.swapItems(data)
             })
         }
 
-        return view
+        villagerAdapter.setOnItemClickListener(object : VillagersRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val action = VillagersFragmentDirections.actionShowVillagerDetail()
+                binding.root.findNavController().navigate(action)
+            }
+
+        })
+
+        return binding.root
     }
 
     companion object {
@@ -57,10 +67,10 @@ class VillagersFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-                VillagersFragment().apply {
-                    arguments = Bundle().apply {
-                        putInt(ARG_COLUMN_COUNT, columnCount)
-                    }
+            VillagersFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(ARG_COLUMN_COUNT, columnCount)
                 }
+            }
     }
 }

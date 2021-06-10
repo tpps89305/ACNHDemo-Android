@@ -10,6 +10,12 @@ import com.dispy.acnhdemo.bean.Villager
 class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>)
     : RecyclerView.Adapter<VillagersRecyclerViewAdapter.ViewHolder>() {
 
+    private lateinit var listener: OnItemClickListener
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemVillagersBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -17,6 +23,9 @@ class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = villagers[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            listener.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int = villagers.size
@@ -32,4 +41,9 @@ class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>)
             binding.executePendingBindings()
         }
     }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
 }
