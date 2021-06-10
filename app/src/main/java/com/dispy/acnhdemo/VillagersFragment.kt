@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
 import com.dispy.acnhdemo.function.VillagerViewModel
+import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialElevationScale
 
 /**
  * A fragment representing a list of Items.
@@ -23,9 +26,6 @@ class VillagersFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
     }
 
     override fun onCreateView(
@@ -33,6 +33,9 @@ class VillagersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentVillagersListBinding.inflate(layoutInflater)
+        exitTransition = Hold()
+        exitTransition = MaterialElevationScale(/* growing= */ false)
+        reenterTransition = MaterialElevationScale(/* growing= */ true)
 
         with(binding.listVillagers) {
             layoutManager = when {
@@ -48,10 +51,12 @@ class VillagersFragment : Fragment() {
             })
         }
 
-        villagerAdapter.setOnItemClickListener(object : VillagersRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                val action = VillagersFragmentDirections.actionShowVillagerDetail()
-                binding.root.findNavController().navigate(action)
+        villagerAdapter.setOnItemClickListener(object :
+            VillagersRecyclerViewAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int, fileName: String) {
+                val extras = FragmentNavigatorExtras(view to fileName)
+                val action = VillagersFragmentDirections.actionShowVillagerDetail(fileName)
+                binding.root.findNavController().navigate(action, extras)
             }
 
         })
@@ -59,18 +64,4 @@ class VillagersFragment : Fragment() {
         return binding.root
     }
 
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            VillagersFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
-    }
 }
