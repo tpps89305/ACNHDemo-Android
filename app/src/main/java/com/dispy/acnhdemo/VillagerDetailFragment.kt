@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.dispy.acnhdemo.databinding.FragmentVillagerDetailBinding
-import com.google.android.material.transition.MaterialContainerTransform
 
 class VillagerDetailFragment : Fragment() {
 
@@ -19,9 +17,12 @@ class VillagerDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        sharedElementEnterTransition = MaterialContainerTransform()
+//        sharedElementEnterTransition = MaterialContainerTransform()
         val binding = FragmentVillagerDetailBinding.inflate(layoutInflater)
-        ViewCompat.setTransitionName(binding.root, args.fileName)
+        //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
+//        ViewCompat.setTransitionName(binding.root, "ant00")
+
+        binding.villager = args.villager
         return binding.root
     }
 }

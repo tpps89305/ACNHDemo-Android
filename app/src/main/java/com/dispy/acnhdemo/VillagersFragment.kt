@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dispy.acnhdemo.bean.Villager
 import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
 import com.dispy.acnhdemo.function.VillagerViewModel
 import com.google.android.material.transition.Hold
@@ -23,19 +25,15 @@ class VillagersFragment : Fragment() {
     private val villagerAdapter = VillagersRecyclerViewAdapter(ArrayList())
     private val viewModel = VillagerViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentVillagersListBinding.inflate(layoutInflater)
-        exitTransition = Hold()
-        exitTransition = MaterialElevationScale(/* growing= */ false)
-        reenterTransition = MaterialElevationScale(/* growing= */ true)
+        //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
+//        exitTransition = Hold()
+//        exitTransition = MaterialElevationScale(/* growing= */ false)
+//        reenterTransition = MaterialElevationScale(/* growing= */ true)
 
         with(binding.listVillagers) {
             layoutManager = when {
@@ -53,10 +51,11 @@ class VillagersFragment : Fragment() {
 
         villagerAdapter.setOnItemClickListener(object :
             VillagersRecyclerViewAdapter.OnItemClickListener {
-            override fun onItemClick(view: View, position: Int, fileName: String) {
-                val extras = FragmentNavigatorExtras(view to fileName)
-                val action = VillagersFragmentDirections.actionShowVillagerDetail(fileName)
-                binding.root.findNavController().navigate(action, extras)
+            override fun onItemClick(view: View, position: Int, villager: Villager) {
+//                val extras = FragmentNavigatorExtras(view to villager.fileName)
+                val action = VillagersFragmentDirections.actionShowVillagerDetail(villager)
+//                binding.root.findNavController().navigate(action, extras)
+                binding.root.findNavController().navigate(action)
             }
 
         })

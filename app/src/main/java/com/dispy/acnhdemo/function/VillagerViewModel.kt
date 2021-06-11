@@ -14,18 +14,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class VillagerViewModel {
+class VillagerViewModel: ViewModelBase() {
 
-    private val acnhService by lazy {
-        Retrofit.Builder()
-            .baseUrl("http://acnhapi.com/v1/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ACNHService::class.java)
-    }
-    private val gson by lazy {
-        Gson()
-    }
     private val villagers: MutableLiveData<List<Villager>> = MutableLiveData()
 
     fun getVillagers(): LiveData<List<Villager>> {

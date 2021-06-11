@@ -31,7 +31,7 @@ class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :
         val item = villagers[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener.onItemClick(holder.itemView, position, item.fileName)
+            listener.onItemClick(holder.itemView, position, item)
         }
     }
 
@@ -52,7 +52,7 @@ class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int, fileName: String)
+        fun onItemClick(view: View, position: Int, villager: Villager)
     }
 
 }

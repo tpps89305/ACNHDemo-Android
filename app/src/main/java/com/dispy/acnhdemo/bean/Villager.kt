@@ -1,6 +1,7 @@
 package com.dispy.acnhdemo.bean
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Villager (
     val id: Long,
@@ -20,7 +21,7 @@ data class Villager (
     @SerializedName("text-color") val textColor: String,
     val saying: String,
     @SerializedName("catch-translations") val catchTranslations: CatchTranslations
-)
+) : Serializable
 
 data class CatchTranslations (
     @SerializedName("catch-USen") val catchUSen: String,
