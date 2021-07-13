@@ -1,17 +1,21 @@
 package com.dispy.acnhdemo
 
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.dispy.acnhdemo.bean.Villager
 import com.dispy.acnhdemo.databinding.ItemVillagersBinding
 
 class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :
-    RecyclerView.Adapter<VillagersRecyclerViewAdapter.ViewHolder>() {
+    RecyclerView.Adapter<VillagersRecyclerViewAdapter.ViewHolder>(), Filterable {
 
     private lateinit var listener: OnItemClickListener
+    private val villagersFiltered = ArrayList<Villager>()
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
@@ -28,17 +32,18 @@ class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = villagers[position]
+        val item = villagersFiltered[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
             listener.onItemClick(holder.itemView, position, item)
         }
     }
 
-    override fun getItemCount(): Int = villagers.size
+    override fun getItemCount(): Int = villagersFiltered.size
 
     fun swapItems(newItems: List<Villager>) {
         villagers.addAll(newItems)
+        villagersFiltered.addAll(newItems)
         notifyDataSetChanged()
     }
 
@@ -53,6 +58,35 @@ class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :
 
     interface OnItemClickListener {
         fun onItemClick(view: View, position: Int, villager: Villager)
+    }
+
+    override fun getFilter(): Filter {
+        return mFilter
+    }
+
+    private var mFilter: Filter = object : Filter() {
+
+        override fun performFiltering(constraint: CharSequence): FilterResults {
+            val filteredList = ArrayList<Villager>()
+            if (TextUtils.isEmpty(constraint)) {
+                filteredList.addAll(villagers)
+            } else {
+                for (villager in villagers) {
+                    if (villager.name.nameTWzh.contains(constraint)) {
+                        filteredList.add(villager)
+                    }
+                }
+            }
+            val filterResults = FilterResults()
+            filterResults.values = filteredList
+            return filterResults
+        }
+
+        override fun publishResults(constraint: CharSequence, results: FilterResults) {
+            villagersFiltered.clear()
+            villagersFiltered.addAll(results.values as Collection<Villager>)
+            notifyDataSetChanged()
+        }
     }
 
 }

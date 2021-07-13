@@ -1,9 +1,8 @@
 package com.dispy.acnhdemo
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -35,6 +34,7 @@ class VillagersFragment : Fragment() {
 //        exitTransition = MaterialElevationScale(/* growing= */ false)
 //        reenterTransition = MaterialElevationScale(/* growing= */ true)
 
+        setHasOptionsMenu(true)
         with(binding.listVillagers) {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
@@ -61,6 +61,23 @@ class VillagersFragment : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        activity?.menuInflater?.inflate(R.menu.search, menu)
+        val menuItem = menu.findItem(R.id.action_search)
+        val searchView = menuItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                villagerAdapter.filter.filter(newText)
+                return false
+            }
+
+        })
     }
 
 }
