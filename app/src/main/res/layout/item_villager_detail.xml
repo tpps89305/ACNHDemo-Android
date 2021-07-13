@@ -6,6 +6,9 @@
         <variable
             name="villagerDetailItem"
             type="com.dispy.acnhdemo.bean.VillagerDetailItem" />
+        <variable
+            name="textColor"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +23,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:text="@{villagerDetailItem.title}"
+            android:textColor="@{textColor}"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,6 @@
 package com.dispy.acnhdemo
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,7 @@ import com.dispy.acnhdemo.function.VillagerDetailItemViewModel
 class VillagerDetailFragment : Fragment() {
 
     private val args: VillagerDetailFragmentArgs by navArgs()
-    private val detailAdapter = VillagerDetailItemRecyclerViewAdapter(ArrayList(), "")
+    private val detailAdapter = VillagerDetailItemRecyclerViewAdapter(ArrayList())
     private val viewModel = VillagerDetailItemViewModel()
 
     override fun onCreateView(
@@ -29,6 +30,7 @@ class VillagerDetailFragment : Fragment() {
         with(binding.recyclerViewDetail) {
             layoutManager = LinearLayoutManager(context)
             adapter = detailAdapter
+            setBackgroundColor(Color.parseColor(args.villager.bubbleColor))
         }
 
         with(viewModel) {
@@ -36,9 +38,8 @@ class VillagerDetailFragment : Fragment() {
             getItems().observe(viewLifecycleOwner, { data ->
                 detailAdapter.swapItems(data)
             })
-            getAvatarUrl().observe(viewLifecycleOwner, { data ->
-                detailAdapter.swapItems(data)
-            })
+            detailAdapter.swapImageUrl(args.villager.imageURI)
+            detailAdapter.swapTextColor(Color.parseColor(args.villager.textColor))
         }
 
         return binding.root

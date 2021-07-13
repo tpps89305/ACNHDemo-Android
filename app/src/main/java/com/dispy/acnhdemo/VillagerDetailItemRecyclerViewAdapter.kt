@@ -1,5 +1,6 @@
 package com.dispy.acnhdemo
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,11 +8,13 @@ import com.dispy.acnhdemo.bean.VillagerDetailItem
 import com.dispy.acnhdemo.databinding.ItemVillagerAvatarBinding
 import com.dispy.acnhdemo.databinding.ItemVillagerDetailBinding
 
-class VillagerDetailItemRecyclerViewAdapter(private val villagerDetailItems: ArrayList<VillagerDetailItem>, private var imageUrl: String) :
+class VillagerDetailItemRecyclerViewAdapter(private val villagerDetailItems: ArrayList<VillagerDetailItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_AVATAR = 0
     private val VIEW_TYPE_DETAIL = 1
+    private lateinit var imageUrl: String
+    private var textColorHex = Color.parseColor("#000000")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == VIEW_TYPE_AVATAR) {
@@ -25,7 +28,7 @@ class VillagerDetailItemRecyclerViewAdapter(private val villagerDetailItems: Arr
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            ))
+            ), textColorHex)
         }
     }
 
@@ -54,8 +57,13 @@ class VillagerDetailItemRecyclerViewAdapter(private val villagerDetailItems: Arr
         notifyDataSetChanged()
     }
 
-    fun swapItems(imageUrl: String) {
+    fun swapImageUrl(imageUrl: String) {
         this.imageUrl = imageUrl
+        notifyDataSetChanged()
+    }
+
+    fun swapTextColor(textColorHex: Int) {
+        this.textColorHex = textColorHex
         notifyDataSetChanged()
     }
 
@@ -67,9 +75,10 @@ class VillagerDetailItemRecyclerViewAdapter(private val villagerDetailItems: Arr
         }
     }
 
-    inner class DetailViewHolder(private val binding: ItemVillagerDetailBinding) :
+    inner class DetailViewHolder(private val binding: ItemVillagerDetailBinding, private val textColorHex: Int) :
             RecyclerView.ViewHolder(binding.root) {
         fun bind(villagerDetailItem: VillagerDetailItem) {
+            binding.textColor = textColorHex
             binding.villagerDetailItem = villagerDetailItem
             binding.executePendingBindings()
         }

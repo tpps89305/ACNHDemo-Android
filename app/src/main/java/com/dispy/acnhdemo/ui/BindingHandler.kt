@@ -3,6 +3,7 @@ package com.dispy.acnhdemo.ui
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.transform.RoundedCornersTransformation
 
 object BindingHandler {
 
@@ -10,5 +11,13 @@ object BindingHandler {
     @JvmStatic
     fun bindingImage(imageView: ImageView, url: String?) {
         imageView.load(url)
+    }
+
+    @BindingAdapter("loadVillagerAvatarImageUrl")
+    @JvmStatic
+    fun bindingVillagerAvatarImage(imageView: ImageView, url: String?) {
+        imageView.load(url) {
+            transformations(RoundedCornersTransformation(50F))
+        }
     }
 }

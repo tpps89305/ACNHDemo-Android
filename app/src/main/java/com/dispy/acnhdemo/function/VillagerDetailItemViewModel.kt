@@ -23,10 +23,6 @@ class VillagerDetailItemViewModel {
         this@VillagerDetailItemViewModel.detailAvatarUrl.value = villager.imageURI
     }
 
-    fun getAvatarUrl(): LiveData<String> {
-        return detailAvatarUrl
-    }
-
     fun getItems(): LiveData<List<VillagerDetailItem>> {
         return listDetailItems
     }
