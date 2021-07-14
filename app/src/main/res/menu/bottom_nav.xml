@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_baseline_keyboard_24"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/nav_villagers"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Villagers" />
+    <item
+        android:id="@+id/nav_catalog"
+        android:icon="@drawable/ic_baseline_folder_24"
+        android:title="Catalog" />
+</menu>
