@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="catalog_items">
+        <item>Songs</item>
+        <item>Fishes</item>
+        <item>Sea Creatures</item>
+        <item>Bugs</item>
+        <item>Fossils</item>
+        <item>Art</item>
+        <item>BGM</item>
+    </string-array>
+</resources>
