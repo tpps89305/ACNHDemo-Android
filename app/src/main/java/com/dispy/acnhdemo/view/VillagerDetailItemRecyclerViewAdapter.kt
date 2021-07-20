@@ -1,10 +1,10 @@
-package com.dispy.acnhdemo
+package com.dispy.acnhdemo.view
 
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dispy.acnhdemo.bean.VillagerDetailItem
+import com.dispy.acnhdemo.model.bean.VillagerDetailItem
 import com.dispy.acnhdemo.databinding.ItemVillagerAvatarBinding
 import com.dispy.acnhdemo.databinding.ItemVillagerDetailBinding
 

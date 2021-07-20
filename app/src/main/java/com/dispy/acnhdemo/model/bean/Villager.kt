@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.bean
+package com.dispy.acnhdemo.model.bean
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

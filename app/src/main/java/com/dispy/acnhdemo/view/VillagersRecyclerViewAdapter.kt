@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo
+package com.dispy.acnhdemo.view
 
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.dispy.acnhdemo.bean.Villager
+import com.dispy.acnhdemo.model.bean.Villager
 import com.dispy.acnhdemo.databinding.ItemVillagersBinding
 
 class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :

@@ -1,19 +1,16 @@
-package com.dispy.acnhdemo
+package com.dispy.acnhdemo.view
 
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dispy.acnhdemo.bean.Villager
+import com.dispy.acnhdemo.R
+import com.dispy.acnhdemo.model.bean.Villager
 import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
-import com.dispy.acnhdemo.function.VillagerViewModel
-import com.google.android.material.transition.Hold
-import com.google.android.material.transition.MaterialElevationScale
+import com.dispy.acnhdemo.viewmodel.VillagerViewModel
 
 /**
  * A fragment representing a list of Items.

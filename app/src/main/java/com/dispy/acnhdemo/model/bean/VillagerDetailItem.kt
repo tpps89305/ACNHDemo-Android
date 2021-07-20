@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.bean
+package com.dispy.acnhdemo.model.bean
 
 data class VillagerDetailItem (
     val title: String,

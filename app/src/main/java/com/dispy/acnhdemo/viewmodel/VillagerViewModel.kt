@@ -1,18 +1,15 @@
-package com.dispy.acnhdemo.function
+package com.dispy.acnhdemo.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dispy.acnhdemo.bean.Villager
-import com.google.gson.Gson
+import com.dispy.acnhdemo.model.bean.Villager
 import com.google.gson.reflect.TypeToken
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class VillagerViewModel: ViewModelBase() {
 

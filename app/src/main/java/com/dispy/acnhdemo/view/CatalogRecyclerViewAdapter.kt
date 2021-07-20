@@ -1,10 +1,11 @@
-package com.dispy.acnhdemo
+package com.dispy.acnhdemo.view
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.dispy.acnhdemo.R
 
 import com.dispy.acnhdemo.dummy.DummyContent.DummyItem
 

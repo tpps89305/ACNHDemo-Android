@@ -7,7 +7,7 @@
 
         <variable
             name="villager"
-            type="com.dispy.acnhdemo.bean.Villager" />
+            type="com.dispy.acnhdemo.model.bean.Villager" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

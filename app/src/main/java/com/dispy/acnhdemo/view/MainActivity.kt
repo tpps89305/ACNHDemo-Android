@@ -1,12 +1,10 @@
-package com.dispy.acnhdemo
+package com.dispy.acnhdemo.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.navigation.fragment.NavHostFragment
+import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 

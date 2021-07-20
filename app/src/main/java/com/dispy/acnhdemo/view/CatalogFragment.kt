@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo
+package com.dispy.acnhdemo.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.dummy.DummyContent
 
 /**

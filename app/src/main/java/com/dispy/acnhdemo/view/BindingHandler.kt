@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.ui
+package com.dispy.acnhdemo.view
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/villagersFragment"
-        android:name="com.dispy.acnhdemo.VillagersFragment"
+        android:name="com.dispy.acnhdemo.view.VillagersFragment"
         android:label="fragment_villagers_list"
         tools:layout="@layout/fragment_villagers_list">
         <action
@@ -18,21 +18,21 @@
     </fragment>
     <fragment
         android:id="@+id/villagerrDetailFragment"
-        android:name="com.dispy.acnhdemo.VillagerDetailFragment"
+        android:name="com.dispy.acnhdemo.view.VillagerDetailFragment"
         android:label="fragment_villagerr_detail"
         tools:layout="@layout/fragment_villager_detail">
         <argument
             android:name="villager"
-            app:argType="com.dispy.acnhdemo.bean.Villager" />
+            app:argType="com.dispy.acnhdemo.model.bean.Villager" />
     </fragment>
     <fragment
         android:id="@+id/catalogFragment"
-        android:name="com.dispy.acnhdemo.CatalogFragment"
+        android:name="com.dispy.acnhdemo.view.CatalogFragment"
         android:label="fragment_catalog"
         tools:layout="@layout/fragment_catalog" />
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.dispy.acnhdemo.DashboardFragment"
+        android:name="com.dispy.acnhdemo.view.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 

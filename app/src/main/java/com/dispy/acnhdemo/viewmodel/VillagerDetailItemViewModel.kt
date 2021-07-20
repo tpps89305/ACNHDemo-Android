@@ -1,9 +1,9 @@
-package com.dispy.acnhdemo.function
+package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.dispy.acnhdemo.bean.Villager
-import com.dispy.acnhdemo.bean.VillagerDetailItem
+import com.dispy.acnhdemo.model.bean.Villager
+import com.dispy.acnhdemo.model.bean.VillagerDetailItem
 
 class VillagerDetailItemViewModel {
 

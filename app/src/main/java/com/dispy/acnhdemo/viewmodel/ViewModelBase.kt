@@ -1,5 +1,6 @@
-package com.dispy.acnhdemo.function
+package com.dispy.acnhdemo.viewmodel
 
+import com.dispy.acnhdemo.model.ACNHService
 import com.google.gson.Gson
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

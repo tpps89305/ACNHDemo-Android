@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.function
+package com.dispy.acnhdemo.model
 
 import okhttp3.ResponseBody
 import retrofit2.Call
