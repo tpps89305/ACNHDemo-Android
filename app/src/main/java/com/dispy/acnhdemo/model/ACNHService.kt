@@ -10,4 +10,8 @@ interface ACNHService {
     @Headers("Content-Type: application/json")
     @GET("villagers")
     fun getVillagers(): Call<ResponseBody>
+
+    @Headers("Content-Type: application/json")
+    @GET("songs")
+    fun getSongs(): Call<ResponseBody>
 }

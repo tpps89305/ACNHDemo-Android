@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="song"
+            type="com.dispy.acnhdemo.model.bean.Song" />
+        <variable
+            name="sourceInfo"
+            type="String" />
+        <variable
+            name="priceInfo"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageSong"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadUrl="@{song.imageURI}"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textSongName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{song.name.nameTWzh}"
+            app:layout_constraintStart_toEndOf="@+id/imageSong"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="AAAAA" />
+
+        <TextView
+            android:id="@+id/textSongSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{sourceInfo}"
+            app:layout_constraintBottom_toTopOf="@+id/textSongPriceInfo"
+            app:layout_constraintStart_toStartOf="@+id/textSongName"
+            app:layout_constraintTop_toBottomOf="@+id/textSongName"
+            tools:text="BBBBB"/>
+
+        <TextView
+            android:id="@+id/textSongPriceInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@{priceInfo}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/textSongSource"
+            tools:text="CCCCC"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+
