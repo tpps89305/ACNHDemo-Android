@@ -6,4 +6,6 @@
     <string name="text_species">Species</string>
     <string name="text_gender">Gender</string>
     <string name="text_catch_phrase">Catch phrase</string>
+    <string name="play">PLAY</string>
+    <string name="stop">STOP</string>
 </resources>
