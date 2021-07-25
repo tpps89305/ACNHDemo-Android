@@ -15,57 +15,74 @@
             type="String" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout3"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageSong"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loadUrl="@{song.imageURI}"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/textSongName"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@{song.name.nameTWzh}"
-            app:layout_constraintStart_toEndOf="@+id/imageSong"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="AAAAA" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/textSongSource"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{sourceInfo}"
-            app:layout_constraintBottom_toTopOf="@+id/textSongPriceInfo"
-            app:layout_constraintStart_toStartOf="@+id/textSongName"
-            app:layout_constraintTop_toBottomOf="@+id/textSongName"
-            tools:text="BBBBB"/>
+            <ImageView
+                android:id="@+id/imageSong"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadUrl="@{song.imageURI}"
+                tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/textSongPriceInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@{priceInfo}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/textSongSource"
-            tools:text="CCCCC"/>
+            <TextView
+                android:id="@+id/textSongName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{song.name.nameTWzh}"
+                app:layout_constraintStart_toEndOf="@+id/imageSong"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="AAAAA" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textSongSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{sourceInfo}"
+                app:layout_constraintBottom_toTopOf="@+id/textSongPriceInfo"
+                app:layout_constraintStart_toStartOf="@+id/textSongName"
+                app:layout_constraintTop_toBottomOf="@+id/textSongName"
+                tools:text="BBBBB"/>
+
+            <TextView
+                android:id="@+id/textSongPriceInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@{priceInfo}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textSongSource"
+                tools:text="CCCCC"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 </layout>
 

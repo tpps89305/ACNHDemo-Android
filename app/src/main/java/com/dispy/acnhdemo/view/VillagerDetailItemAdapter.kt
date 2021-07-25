@@ -8,7 +8,7 @@ import com.dispy.acnhdemo.model.bean.VillagerDetailItem
 import com.dispy.acnhdemo.databinding.ItemVillagerAvatarBinding
 import com.dispy.acnhdemo.databinding.ItemVillagerDetailBinding
 
-class VillagerDetailItemRecyclerViewAdapter(private val villagerDetailItems: ArrayList<VillagerDetailItem>) :
+class VillagerDetailItemAdapter(private val villagerDetailItems: ArrayList<VillagerDetailItem>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_AVATAR = 0

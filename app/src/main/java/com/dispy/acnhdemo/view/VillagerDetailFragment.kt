@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,7 @@ import com.dispy.acnhdemo.viewmodel.VillagerDetailItemViewModel
 class VillagerDetailFragment : Fragment() {
 
     private val args: VillagerDetailFragmentArgs by navArgs()
-    private val detailAdapter = VillagerDetailItemRecyclerViewAdapter(ArrayList())
+    private val detailAdapter = VillagerDetailItemAdapter(ArrayList())
     private val viewModel = VillagerDetailItemViewModel()
 
     override fun onCreateView(
@@ -24,6 +25,7 @@ class VillagerDetailFragment : Fragment() {
     ): View? {
 //        sharedElementEnterTransition = MaterialContainerTransform()
         val binding = FragmentVillagerDetailBinding.inflate(layoutInflater)
+        (activity as AppCompatActivity).supportActionBar?.title = args.villager.name.nameTWzh
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        ViewCompat.setTransitionName(binding.root, "ant00")
 

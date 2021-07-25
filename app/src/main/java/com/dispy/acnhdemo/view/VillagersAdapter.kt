@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dispy.acnhdemo.model.bean.Villager
 import com.dispy.acnhdemo.databinding.ItemVillagersBinding
 
-class VillagersRecyclerViewAdapter(private val villagers: ArrayList<Villager>) :
-    RecyclerView.Adapter<VillagersRecyclerViewAdapter.ViewHolder>(), Filterable {
+class VillagersAdapter(private val villagers: ArrayList<Villager>) :
+    RecyclerView.Adapter<VillagersAdapter.ViewHolder>(), Filterable {
 
     private lateinit var listener: OnItemClickListener
     private val villagersFiltered = ArrayList<Villager>()

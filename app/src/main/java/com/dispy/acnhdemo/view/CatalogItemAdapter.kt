@@ -5,15 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dispy.acnhdemo.databinding.ItemCatalogBinding
 
-import com.dispy.acnhdemo.dummy.DummyContent.DummyItem
-
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
-class CatalogRecyclerViewAdapter(
+class CatalogItemAdapter(
     private val values: Array<String>
-) : RecyclerView.Adapter<CatalogRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CatalogItemAdapter.ViewHolder>() {
 
     private lateinit var listener: OnItemClickListener
 
