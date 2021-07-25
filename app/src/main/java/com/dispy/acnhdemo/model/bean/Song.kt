@@ -1,6 +1,7 @@
 package com.dispy.acnhdemo.model.bean
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 // To parse the JSON, install kotlin's serialization plugin and do:
 //
@@ -30,4 +31,4 @@ data class Song (
 
     @SerializedName("image_uri")
     val imageURI: String
-)
+) : Serializable

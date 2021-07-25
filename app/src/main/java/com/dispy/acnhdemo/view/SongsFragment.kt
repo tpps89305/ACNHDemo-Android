@@ -1,16 +1,16 @@
 package com.dispy.acnhdemo.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dispy.acnhdemo.R
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentSongsBinding
-import com.dispy.acnhdemo.dummy.DummyContent
+import com.dispy.acnhdemo.model.bean.Song
 import com.dispy.acnhdemo.viewmodel.SongsFragmentViewModel
 
 /**
@@ -28,6 +28,8 @@ class SongsFragment : Fragment() {
     ): View? {
         val binding = FragmentSongsBinding.inflate(layoutInflater)
 
+        (activity as AppCompatActivity).supportActionBar?.title = "Songs"
+
         with(binding.listSongs) {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
@@ -41,6 +43,13 @@ class SongsFragment : Fragment() {
                 songsAdapter.swapItems(data)
             })
         }
+
+        songsAdapter.setOnItemClickListener(object : SongsAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int, song: Song) {
+                val action = SongsFragmentDirections.actionSongsFragmentToSongDetailFragment(song)
+                binding.root.findNavController().navigate(action)
+            }
+        })
 
         return binding.root
     }

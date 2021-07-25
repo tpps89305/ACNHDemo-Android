@@ -1,0 +1,34 @@
+package com.dispy.acnhdemo.view
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.navArgs
+import com.dispy.acnhdemo.databinding.FragmentSongDetailBinding
+import com.dispy.acnhdemo.viewmodel.SongDetailViewModel
+
+class SongDetailFragment : Fragment() {
+
+    private val args: SongDetailFragmentArgs by navArgs()
+    private val viewModel = SongDetailViewModel()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = FragmentSongDetailBinding.inflate(layoutInflater)
+
+        // Important
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        (activity as AppCompatActivity).supportActionBar?.title  = args.song.name.nameTWzh
+        viewModel.getData(args.song)
+
+        return binding.root
+    }
+
+}
