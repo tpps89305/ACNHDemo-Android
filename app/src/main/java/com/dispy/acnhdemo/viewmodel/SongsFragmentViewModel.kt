@@ -33,8 +33,7 @@ class SongsFragmentViewModel: ViewModelBase() {
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("Songs", "Error when get villagers")
-                Log.w("Songs", t.message!!)
+                Log.w("Songs", "Error when get songs", t)
             }
 
         })

@@ -35,6 +35,9 @@
             app:destination="@id/songsFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
+        <action
+            android:id="@+id/action_catalogFragment_to_fishesFragment"
+            app:destination="@id/fishesFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -59,5 +62,10 @@
             android:name="song"
             app:argType="com.dispy.acnhdemo.model.bean.Song" />
     </fragment>
+    <fragment
+        android:id="@+id/fishesFragment"
+        android:name="com.dispy.acnhdemo.view.FishesFragment"
+        android:label="fragment_fishes"
+        tools:layout="@layout/fragment_fishes" />
 
 </navigation>

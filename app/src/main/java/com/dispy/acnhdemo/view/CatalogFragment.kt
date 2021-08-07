@@ -1,14 +1,14 @@
 package com.dispy.acnhdemo.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentCatalogBinding
 
@@ -39,7 +39,11 @@ class CatalogFragment : Fragment() {
 
         catalogAdapter.setOnItemClickListener(object : CatalogItemAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                val action = CatalogFragmentDirections.actionCatalogFragmentToSongsFragment()
+                val action = when (position) {
+                    0 -> CatalogFragmentDirections.actionCatalogFragmentToSongsFragment()
+                    1 -> CatalogFragmentDirections.actionCatalogFragmentToFishesFragment()
+                    else -> throw IllegalArgumentException("Cannot find the catalog $position")
+                }
                 binding.root.findNavController().navigate(action)
             }
 
