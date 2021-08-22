@@ -2,30 +2,28 @@ package com.dispy.acnhdemo.view
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import android.view.*
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentVillagerDetailBinding
 import com.dispy.acnhdemo.viewmodel.VillagerDetailItemViewModel
 
-class VillagerDetailFragment : Fragment() {
+class VillagerDetailFragment : BaseFragment() {
 
     private val args: VillagerDetailFragmentArgs by navArgs()
     private val detailAdapter = VillagerDetailItemAdapter(ArrayList())
     private val viewModel = VillagerDetailItemViewModel()
+    private lateinit var binding: FragmentVillagerDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 //        sharedElementEnterTransition = MaterialContainerTransform()
-        val binding = FragmentVillagerDetailBinding.inflate(layoutInflater)
-        (activity as AppCompatActivity).supportActionBar?.title = args.villager.name.nameTWzh
+        binding = FragmentVillagerDetailBinding.inflate(layoutInflater)
+        initActionBar(args.villager.name.nameTWzh, true)
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        ViewCompat.setTransitionName(binding.root, "ant00")
 
@@ -45,5 +43,14 @@ class VillagerDetailFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                binding.root.findNavController().popBackStack()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -2,9 +2,7 @@ package com.dispy.acnhdemo.view
 
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +14,7 @@ import com.dispy.acnhdemo.viewmodel.VillagerViewModel
 /**
  * A fragment representing a list of Items.
  */
-class VillagersFragment : Fragment() {
+class VillagersFragment : BaseFragment() {
 
     private var columnCount = 1
     private val villagerAdapter = VillagersAdapter(ArrayList())
@@ -27,7 +25,7 @@ class VillagersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentVillagersListBinding.inflate(layoutInflater)
-        (activity as AppCompatActivity).supportActionBar?.title = "Villagers"
+        initActionBar("Villagers", false)
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        exitTransition = Hold()
 //        exitTransition = MaterialElevationScale(/* growing= */ false)
