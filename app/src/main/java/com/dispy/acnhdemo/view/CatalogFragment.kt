@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +13,7 @@ import com.dispy.acnhdemo.databinding.FragmentCatalogBinding
 /**
  * A fragment representing a list of Items.
  */
-class CatalogFragment : Fragment() {
+class CatalogFragment : BaseFragment() {
 
     private var columnCount = 1
     private val catalogAdapter by lazy {
@@ -25,9 +23,9 @@ class CatalogFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentCatalogBinding.inflate(layoutInflater)
-        (activity as AppCompatActivity).supportActionBar?.title = "Catalog"
+        initActionBar("Catalog", false)
 
         with(binding.listCatalog) {
             layoutManager = when {

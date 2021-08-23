@@ -10,7 +10,7 @@ abstract class BaseFragment: Fragment() {
      * @param title Page's title
      * @param enableHomeButton Set home button show or hidden
      */
-    fun initActionBar(title: String, enableHomeButton: Boolean) {
+    fun initActionBar(title: String, enableHomeButton: Boolean = true) {
         val actionBar = (activity as AppCompatActivity).supportActionBar!!
         actionBar.title = title
         actionBar.setDisplayHomeAsUpEnabled(enableHomeButton)

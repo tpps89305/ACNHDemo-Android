@@ -23,9 +23,9 @@ class VillagersFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentVillagersListBinding.inflate(layoutInflater)
-        initActionBar("Villagers", false)
+        initActionBar("Villagers")
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        exitTransition = Hold()
 //        exitTransition = MaterialElevationScale(/* growing= */ false)
