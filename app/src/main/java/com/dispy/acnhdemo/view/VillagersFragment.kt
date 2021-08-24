@@ -2,7 +2,10 @@ package com.dispy.acnhdemo.view
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +13,7 @@ import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.model.bean.Villager
 import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
 import com.dispy.acnhdemo.viewmodel.VillagerViewModel
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * A fragment representing a list of Items.
@@ -18,13 +22,14 @@ class VillagersFragment : BaseFragment() {
 
     private var columnCount = 1
     private val villagerAdapter = VillagersAdapter(ArrayList())
-    private val viewModel = VillagerViewModel()
+    private val viewModel: VillagerViewModel by viewModels()
+    private lateinit var binding: FragmentVillagersListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentVillagersListBinding.inflate(layoutInflater)
+        binding = FragmentVillagersListBinding.inflate(layoutInflater)
         initActionBar("Villagers")
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        exitTransition = Hold()
@@ -40,9 +45,15 @@ class VillagersFragment : BaseFragment() {
             adapter = villagerAdapter
         }
 
+        binding.progressLoading.visibility = View.VISIBLE
         with(viewModel) {
             getVillagers().observe(viewLifecycleOwner, { data ->
-                villagerAdapter.swapItems(data)
+                binding.progressLoading.visibility = View.GONE
+                if (data.isNotEmpty()) {
+                    villagerAdapter.swapItems(data)
+                } else {
+                    binding.groupNoResult.visibility = View.VISIBLE
+                }
             })
         }
 

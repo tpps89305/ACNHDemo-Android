@@ -13,11 +13,17 @@ import retrofit2.Response
 
 class VillagerViewModel: ViewModelBase() {
 
-    private val villagers: MutableLiveData<List<Villager>> = MutableLiveData()
+    private val villagers: MutableLiveData<List<Villager>> by lazy {
+        MutableLiveData<List<Villager>>().also {
+            loadVillagers()
+        }
+    }
 
     fun getVillagers(): LiveData<List<Villager>> {
-        if (villagers.value != null)
-            return villagers
+        return villagers
+    }
+
+    private fun loadVillagers() {
         val call: Call<ResponseBody> = acnhService.getVillagers()
         Log.d("Villagers", call.request().toString())
         call.enqueue(object : Callback<ResponseBody> {
@@ -37,10 +43,10 @@ class VillagerViewModel: ViewModelBase() {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 Log.w("Villagers", "Error when get villagers")
                 Log.w("Villagers", t.message!!)
+                villagers.value = ArrayList()
             }
 
         })
-        return villagers
     }
 
 }
