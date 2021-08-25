@@ -1,9 +1,7 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -12,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.model.bean.Villager
 import com.dispy.acnhdemo.databinding.FragmentVillagersListBinding
+import com.dispy.acnhdemo.view.adapter.VillagersAdapter
 import com.dispy.acnhdemo.viewmodel.VillagerViewModel
-import com.google.android.material.snackbar.Snackbar
 
 /**
  * A fragment representing a list of Items.
@@ -61,7 +59,10 @@ class VillagersFragment : BaseFragment() {
             VillagersAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int, villager: Villager) {
 //                val extras = FragmentNavigatorExtras(view to villager.fileName)
-                val action = VillagersFragmentDirections.actionShowVillagerDetail(villager)
+                val action =
+                    VillagersFragmentDirections.actionShowVillagerDetail(
+                        villager
+                    )
 //                binding.root.findNavController().navigate(action, extras)
                 binding.root.findNavController().navigate(action)
             }

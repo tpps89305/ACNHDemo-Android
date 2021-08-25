@@ -1,5 +1,6 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.fragment
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
@@ -7,44 +8,42 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
-import com.dispy.acnhdemo.databinding.FragmentSongsBinding
-import com.dispy.acnhdemo.model.bean.Song
-import com.dispy.acnhdemo.viewmodel.SongsFragmentViewModel
+import com.dispy.acnhdemo.databinding.FragmentFishesBinding
+import com.dispy.acnhdemo.model.bean.Fish
+import com.dispy.acnhdemo.view.adapter.FishesAdapter
+import com.dispy.acnhdemo.viewmodel.FishesViewModel
 
-/**
- * A fragment representing a list of Items.
- */
-class SongsFragment : BaseFragment() {
+class FishesFragment : BaseFragment() {
 
     private var columnCount = 1
-    private val songsAdapter = SongsAdapter(ArrayList())
-    private val viewModel = SongsFragmentViewModel()
-    private lateinit var binding: FragmentSongsBinding
+    private lateinit var viewModel: FishesViewModel
+    private val fishesAdapter = FishesAdapter(ArrayList())
+    private lateinit var binding: FragmentFishesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSongsBinding.inflate(layoutInflater)
-        initActionBar("Songs")
-        with(binding.listSongs) {
+        binding = FragmentFishesBinding.inflate(layoutInflater)
+        initActionBar("Fishes")
+        viewModel = ViewModelProvider(this).get(FishesViewModel::class.java)
+
+        with(binding.listFishes) {
             layoutManager = when {
                 columnCount <= 1 -> LinearLayoutManager(context)
                 else -> GridLayoutManager(context, columnCount)
             }
-            adapter = songsAdapter
+            adapter = fishesAdapter
         }
 
-        with(viewModel) {
-            getSongs().observe(viewLifecycleOwner, { data ->
-                songsAdapter.swapItems(data)
-            })
-        }
+        viewModel.getFishes().observe(viewLifecycleOwner, { data ->
+            fishesAdapter.swapItems(data)
+        })
 
-        songsAdapter.setOnItemClickListener(object : SongsAdapter.OnItemClickListener {
-            override fun onItemClick(view: View, position: Int, song: Song) {
-                val action = SongsFragmentDirections.actionSongsFragmentToSongDetailFragment(song)
-                binding.root.findNavController().navigate(action)
+        fishesAdapter.setOnItemClickListener(object :
+            FishesAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int, fish: Fish) {
+                // TODO: Fish detail page
             }
         })
 
@@ -61,7 +60,7 @@ class SongsFragment : BaseFragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                songsAdapter.filter.filter(newText)
+                fishesAdapter.filter.filter(newText)
                 return false
             }
 

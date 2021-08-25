@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.fragment
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer

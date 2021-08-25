@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.adapter
 
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -8,7 +8,6 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.dispy.acnhdemo.databinding.ItemSongBinding
-import com.dispy.acnhdemo.model.bean.Fish
 import com.dispy.acnhdemo.model.bean.Song
 
 class SongsAdapter(

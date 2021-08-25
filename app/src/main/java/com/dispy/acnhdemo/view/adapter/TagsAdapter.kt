@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

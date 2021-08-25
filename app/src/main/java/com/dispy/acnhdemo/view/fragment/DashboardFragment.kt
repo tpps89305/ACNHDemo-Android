@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

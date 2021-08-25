@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.fragment
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentVillagerDetailBinding
+import com.dispy.acnhdemo.view.adapter.VillagerDetailItemAdapter
 import com.dispy.acnhdemo.viewmodel.VillagerDetailItemViewModel
 
 class VillagerDetailFragment : BaseFragment() {

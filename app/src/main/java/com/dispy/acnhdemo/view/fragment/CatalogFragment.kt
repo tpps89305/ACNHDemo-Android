@@ -1,4 +1,4 @@
-package com.dispy.acnhdemo.view
+package com.dispy.acnhdemo.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentCatalogBinding
+import com.dispy.acnhdemo.view.adapter.CatalogItemAdapter
 
 /**
  * A fragment representing a list of Items.
