@@ -23,7 +23,7 @@ class VillagerDetailFragment : BaseFragment() {
     ): View {
 //        sharedElementEnterTransition = MaterialContainerTransform()
         binding = FragmentVillagerDetailBinding.inflate(layoutInflater)
-        initActionBar(args.villager.name.nameTWzh, true)
+        initActionBar(args.villager.name.nameTWzh)
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        ViewCompat.setTransitionName(binding.root, "ant00")
 

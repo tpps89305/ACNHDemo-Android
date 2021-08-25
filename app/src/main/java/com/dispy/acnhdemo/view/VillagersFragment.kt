@@ -30,7 +30,7 @@ class VillagersFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentVillagersListBinding.inflate(layoutInflater)
-        initActionBar("Villagers")
+        initActionBar("Villagers", false)
         //TODO: Fix IndexOutOfBoundsException from ArrayList.get <- FragmentTransitionImpl.setNameOverridesReordered
 //        exitTransition = Hold()
 //        exitTransition = MaterialElevationScale(/* growing= */ false)
