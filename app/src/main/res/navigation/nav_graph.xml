@@ -66,6 +66,19 @@
         android:id="@+id/fishesFragment"
         android:name="com.dispy.acnhdemo.view.fragment.FishesFragment"
         android:label="fragment_fishes"
-        tools:layout="@layout/fragment_fishes" />
+        tools:layout="@layout/fragment_fishes" >
+        <action
+            android:id="@+id/action_goto_fishDetailFragment"
+            app:destination="@id/fishDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fishDetailFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.FishDetailFragment"
+        android:label="fragment_fish_detail"
+        tools:layout="@layout/fragment_fish_detail" >
+        <argument
+            android:name="fish"
+            app:argType="com.dispy.acnhdemo.model.bean.Fish" />
+    </fragment>
 
 </navigation>

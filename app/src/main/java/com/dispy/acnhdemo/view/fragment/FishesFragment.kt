@@ -43,7 +43,8 @@ class FishesFragment : BaseFragment() {
         fishesAdapter.setOnItemClickListener(object :
             FishesAdapter.OnItemClickListener {
             override fun onItemClick(view: View, position: Int, fish: Fish) {
-                // TODO: Fish detail page
+                val action = FishesFragmentDirections.actionGotoFishDetailFragment(fish)
+                binding.root.findNavController().navigate(action)
             }
         })
 

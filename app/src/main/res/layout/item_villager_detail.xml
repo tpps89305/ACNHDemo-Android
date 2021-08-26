@@ -5,7 +5,7 @@
     <data>
         <variable
             name="villagerDetailItem"
-            type="com.dispy.acnhdemo.model.bean.VillagerDetailItem" />
+            type="com.dispy.acnhdemo.model.bean.TitleContentPair" />
         <variable
             name="textColor"
             type="Integer" />

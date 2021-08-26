@@ -4,11 +4,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dispy.acnhdemo.model.bean.VillagerDetailItem
+import com.dispy.acnhdemo.model.bean.TitleContentPair
 import com.dispy.acnhdemo.databinding.ItemVillagerAvatarBinding
 import com.dispy.acnhdemo.databinding.ItemVillagerDetailBinding
 
-class VillagerDetailItemAdapter(private val villagerDetailItems: ArrayList<VillagerDetailItem>) :
+class VillagerDetailItemAdapter(private val titleContentPairs: ArrayList<TitleContentPair>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_AVATAR = 0
@@ -42,7 +42,7 @@ class VillagerDetailItemAdapter(private val villagerDetailItems: ArrayList<Villa
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DetailViewHolder) {
-            val item = villagerDetailItems[position - 1]
+            val item = titleContentPairs[position - 1]
             holder.bind(item)
         } else if (holder is AvatarViewHolder) {
             val imageUrl = this.imageUrl
@@ -50,10 +50,10 @@ class VillagerDetailItemAdapter(private val villagerDetailItems: ArrayList<Villa
         }
     }
 
-    override fun getItemCount(): Int = villagerDetailItems.size + 1
+    override fun getItemCount(): Int = titleContentPairs.size + 1
 
-    fun swapItems(newItems: List<VillagerDetailItem>) {
-        villagerDetailItems.addAll(newItems)
+    fun swapItems(newItems: List<TitleContentPair>) {
+        titleContentPairs.addAll(newItems)
         notifyDataSetChanged()
     }
 
@@ -77,9 +77,9 @@ class VillagerDetailItemAdapter(private val villagerDetailItems: ArrayList<Villa
 
     inner class DetailViewHolder(private val binding: ItemVillagerDetailBinding, private val textColorHex: Int) :
             RecyclerView.ViewHolder(binding.root) {
-        fun bind(villagerDetailItem: VillagerDetailItem) {
+        fun bind(titleContentPair: TitleContentPair) {
             binding.textColor = textColorHex
-            binding.villagerDetailItem = villagerDetailItem
+            binding.villagerDetailItem = titleContentPair
             binding.executePendingBindings()
         }
     }

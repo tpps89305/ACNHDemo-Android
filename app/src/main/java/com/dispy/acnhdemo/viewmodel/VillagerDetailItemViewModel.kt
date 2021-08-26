@@ -3,27 +3,27 @@ package com.dispy.acnhdemo.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dispy.acnhdemo.model.bean.Villager
-import com.dispy.acnhdemo.model.bean.VillagerDetailItem
+import com.dispy.acnhdemo.model.bean.TitleContentPair
 
 class VillagerDetailItemViewModel {
 
     private val detailAvatarUrl: MutableLiveData<String> = MutableLiveData()
-    private val listDetailItems: MutableLiveData<List<VillagerDetailItem>> = MutableLiveData()
+    private val listDetailItems: MutableLiveData<List<TitleContentPair>> = MutableLiveData()
 
     fun getData(villager: Villager) {
-        val listDetailItems = ArrayList<VillagerDetailItem>()
-        listDetailItems.add(VillagerDetailItem("Personality", villager.personality.name))
-        listDetailItems.add(VillagerDetailItem("Birthday", villager.birthdayString))
-        listDetailItems.add(VillagerDetailItem("Like", villager.bubbleColor))
-        listDetailItems.add(VillagerDetailItem("Species", villager.species))
-        listDetailItems.add(VillagerDetailItem("Gender", villager.gender.name))
-        listDetailItems.add(VillagerDetailItem("Catch Phrase", villager.catchPhrase))
+        val listDetailItems = ArrayList<TitleContentPair>()
+        listDetailItems.add(TitleContentPair("Personality", villager.personality.name))
+        listDetailItems.add(TitleContentPair("Birthday", villager.birthdayString))
+        listDetailItems.add(TitleContentPair("Like", villager.bubbleColor))
+        listDetailItems.add(TitleContentPair("Species", villager.species))
+        listDetailItems.add(TitleContentPair("Gender", villager.gender.name))
+        listDetailItems.add(TitleContentPair("Catch Phrase", villager.catchPhrase))
 
         this@VillagerDetailItemViewModel.listDetailItems.value = listDetailItems
         this@VillagerDetailItemViewModel.detailAvatarUrl.value = villager.imageURI
     }
 
-    fun getItems(): LiveData<List<VillagerDetailItem>> {
+    fun getItems(): LiveData<List<TitleContentPair>> {
         return listDetailItems
     }
 
