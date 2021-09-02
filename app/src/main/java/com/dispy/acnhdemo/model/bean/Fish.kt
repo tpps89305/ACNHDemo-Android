@@ -58,11 +58,11 @@ data class Availability (
     val rarity: String,
 
     @SerializedName("month-array-northern")
-    val monthArrayNorthern: List<Long>,
+    val monthArrayNorthern: List<Int>,
 
     @SerializedName("month-array-southern")
-    val monthArraySouthern: List<Long>,
+    val monthArraySouthern: List<Int>,
 
     @SerializedName("time-array")
-    val timeArray: List<Long>
+    val timeArray: List<Int>
 )

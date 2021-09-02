@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentFishDetailBinding
+import com.dispy.acnhdemo.model.DateHandler
+import com.dispy.acnhdemo.view.adapter.AvailableMonthAdapter
 import com.dispy.acnhdemo.view.adapter.TitleContentAdapter
+import com.dispy.acnhdemo.view.layoutmanager.AvailableMonthLayoutManager
+import com.dispy.acnhdemo.view.layoutmanager.DetailListLayoutManager
 import com.dispy.acnhdemo.viewmodel.FishDetailViewModel
 
 class FishDetailFragment : BaseFragment() {
@@ -18,6 +21,7 @@ class FishDetailFragment : BaseFragment() {
     private val args: FishDetailFragmentArgs by navArgs()
     private val viewModel: FishDetailViewModel by viewModels()
     private val detailAdapter = TitleContentAdapter(ArrayList())
+    private lateinit var availableMonthAdapter: AvailableMonthAdapter
     private lateinit var binding: FragmentFishDetailBinding
 
     override fun onCreateView(
@@ -32,7 +36,7 @@ class FishDetailFragment : BaseFragment() {
         binding.lifecycleOwner = this
 
         with(binding.listFishDetail) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = DetailListLayoutManager(context)
             adapter = detailAdapter
         }
 
@@ -41,6 +45,12 @@ class FishDetailFragment : BaseFragment() {
             getFishInfo().observe(viewLifecycleOwner, { data ->
                 detailAdapter.swapItems(data)
             })
+        }
+
+        availableMonthAdapter = AvailableMonthAdapter(args.fish.availability.monthArrayNorthern, DateHandler.getCurrentMonth())
+        with(binding.listAvailableMonth) {
+            layoutManager = AvailableMonthLayoutManager(context, 4)
+            adapter = availableMonthAdapter
         }
 
         return binding.root
