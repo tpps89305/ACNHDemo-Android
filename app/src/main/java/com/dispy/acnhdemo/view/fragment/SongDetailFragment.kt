@@ -3,33 +3,35 @@ package com.dispy.acnhdemo.view.fragment
 import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentSongDetailBinding
 import com.dispy.acnhdemo.viewmodel.SongDetailViewModel
 
-class SongDetailFragment : Fragment() {
+class SongDetailFragment : BaseFragment() {
 
     private val args: SongDetailFragmentArgs by navArgs()
     private val viewModel = SongDetailViewModel()
-    private var mediaPlayer : MediaPlayer? = MediaPlayer()
+    private var mediaPlayer: MediaPlayer? = MediaPlayer()
+    private lateinit var binding: FragmentSongDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentSongDetailBinding.inflate(layoutInflater)
+    ): View {
+
+        binding = FragmentSongDetailBinding.inflate(layoutInflater)
 
         // Important
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        (activity as AppCompatActivity).supportActionBar?.title  = args.song.name.nameTWzh
+        initActionBar(args.song.name.nameTWzh)
         viewModel.getData(args.song)
 
         initMusicPlayer()
@@ -65,6 +67,15 @@ class SongDetailFragment : Fragment() {
             )
             setDataSource(args.song.musicURI)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                binding.root.findNavController().popBackStack()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

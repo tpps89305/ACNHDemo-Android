@@ -2,12 +2,15 @@ package com.dispy.acnhdemo.view.fragment
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.databinding.FragmentVillagerDetailBinding
 import com.dispy.acnhdemo.view.adapter.VillagerDetailItemAdapter
+import com.dispy.acnhdemo.view.layoutmanager.DetailListLayoutManager
 import com.dispy.acnhdemo.viewmodel.VillagerDetailItemViewModel
 
 class VillagerDetailFragment : BaseFragment() {
@@ -29,7 +32,7 @@ class VillagerDetailFragment : BaseFragment() {
 //        ViewCompat.setTransitionName(binding.root, "ant00")
 
         with(binding.recyclerViewDetail) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = DetailListLayoutManager(context)
             adapter = detailAdapter
             setBackgroundColor(Color.parseColor(args.villager.bubbleColor))
         }

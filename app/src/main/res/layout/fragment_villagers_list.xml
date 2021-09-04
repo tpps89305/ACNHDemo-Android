@@ -4,16 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:name="com.dispy.acnhdemo.VillagersFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/page_background">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listVillagers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:visibility="visible"
         app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:context=".view.fragment.VillagersFragment"
-        tools:layout_editor_absoluteX="16dp"
         tools:listitem="@layout/item_villagers" />
 
     <ProgressBar
