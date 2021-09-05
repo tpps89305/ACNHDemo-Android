@@ -41,6 +41,7 @@ class CatalogFragment : BaseFragment() {
                 val action = when (position) {
                     0 -> CatalogFragmentDirections.actionCatalogFragmentToSongsFragment()
                     1 -> CatalogFragmentDirections.actionCatalogFragmentToFishesFragment()
+                    2 -> CatalogFragmentDirections.actionCatalogFragmentToSeaCreaturesFragment()
                     else -> throw IllegalArgumentException("Cannot find the catalog $position")
                 }
                 binding.root.findNavController().navigate(action)

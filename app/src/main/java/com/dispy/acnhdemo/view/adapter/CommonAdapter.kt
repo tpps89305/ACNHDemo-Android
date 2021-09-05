@@ -8,16 +8,19 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dispy.acnhdemo.databinding.ItemFishBinding
+import com.dispy.acnhdemo.databinding.ItemCommonBinding
+import com.dispy.acnhdemo.model.ArrayHandler
 import com.dispy.acnhdemo.model.TagsDecoration
+import com.dispy.acnhdemo.model.bean.CommonItem
 import com.dispy.acnhdemo.model.bean.Fish
+import com.dispy.acnhdemo.model.bean.SeaCreature
 
-class FishesAdapter(
-    private val fishes: ArrayList<Fish>
-) : RecyclerView.Adapter<FishesAdapter.ViewHolder>(), Filterable {
+class CommonAdapter(
+    private val commonItems: ArrayList<CommonItem>
+) : RecyclerView.Adapter<CommonAdapter.ViewHolder>(), Filterable {
 
-    private lateinit var listener: OnItemClickListener
-    private val fishesFiltered = ArrayList<Fish>()
+    private var listener: OnItemClickListener? = null
+    private val commonItemsFiltered = ArrayList<CommonItem>()
 
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
@@ -25,7 +28,7 @@ class FishesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            ItemFishBinding.inflate(
+            ItemCommonBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -34,47 +37,55 @@ class FishesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = fishesFiltered[position]
+        val item = commonItemsFiltered[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener.onItemClick(holder.itemView, position, item)
+            listener?.onItemClick(holder.itemView, position)
         }
-
-        val tags = ArrayList<String>()
-        tags.add("Sell: ${item.price}")
-        tags.add("Sell CJ: ${item.priceCj}")
 
         with(holder.listTags) {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            adapter = TagsAdapter(tags)
+            adapter = TagsAdapter(item.tags)
             if (itemDecorationCount == 0)
                 addItemDecoration(TagsDecoration())
         }
 
     }
 
-    override fun getItemCount(): Int = fishesFiltered.size
+    override fun getItemCount(): Int = commonItemsFiltered.size
 
+    @JvmName("swapFishItems")
     fun swapItems(newItems: List<Fish>) {
-        fishes.addAll(newItems)
-        fishesFiltered.addAll(newItems)
+        val commonItems = ArrayHandler.parseFishesToCommonItems(newItems)
+
+        this.commonItems.addAll(commonItems)
+        commonItemsFiltered.addAll(commonItems)
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: ItemFishBinding) :
+    @JvmName("swapSeaCreatureItems")
+    fun swapItems(newItems: List<SeaCreature>) {
+        val commonItems = ArrayHandler.parseSeaCreaturesToCommonItems(newItems)
+
+        this.commonItems.addAll(commonItems)
+        commonItemsFiltered.addAll(commonItems)
+        notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(private val binding: ItemCommonBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         lateinit var listTags: RecyclerView
 
-        fun bind(fish: Fish) {
-            binding.fish = fish
+        fun bind(item: CommonItem) {
+            binding.item = item
             listTags = binding.listTag
             binding.executePendingBindings()
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int, fish: Fish)
+        fun onItemClick(view: View, position: Int)
     }
 
     override fun getFilter(): Filter {
@@ -84,13 +95,13 @@ class FishesAdapter(
     private var mFilter: Filter = object : Filter() {
 
         override fun performFiltering(constraint: CharSequence): FilterResults {
-            val filteredList = ArrayList<Fish>()
+            val filteredList = ArrayList<CommonItem>()
             if (TextUtils.isEmpty(constraint)) {
-                filteredList.addAll(fishes)
+                filteredList.addAll(commonItems)
             } else {
-                for (villager in fishes) {
-                    if (villager.name.nameTWzh.contains(constraint)) {
-                        filteredList.add(villager)
+                for (commonItem in commonItems) {
+                    if (commonItem.name.contains(constraint)) {
+                        filteredList.add(commonItem)
                     }
                 }
             }
@@ -100,8 +111,8 @@ class FishesAdapter(
         }
 
         override fun publishResults(constraint: CharSequence, results: FilterResults) {
-            fishesFiltered.clear()
-            fishesFiltered.addAll(results.values as Collection<Fish>)
+            commonItemsFiltered.clear()
+            commonItemsFiltered.addAll(results.values as Collection<CommonItem>)
             notifyDataSetChanged()
         }
     }

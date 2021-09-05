@@ -9,15 +9,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentFishesBinding
-import com.dispy.acnhdemo.model.bean.Fish
-import com.dispy.acnhdemo.view.adapter.FishesAdapter
+import com.dispy.acnhdemo.view.adapter.CommonAdapter
 import com.dispy.acnhdemo.viewmodel.FishesViewModel
 
 class FishesFragment : BaseFragment() {
 
     private var columnCount = 1
     private lateinit var viewModel: FishesViewModel
-    private val fishesAdapter = FishesAdapter(ArrayList())
+    private val fishesAdapter = CommonAdapter(ArrayList())
     private lateinit var binding: FragmentFishesBinding
 
     override fun onCreateView(
@@ -41,9 +40,10 @@ class FishesFragment : BaseFragment() {
         })
 
         fishesAdapter.setOnItemClickListener(object :
-            FishesAdapter.OnItemClickListener {
-            override fun onItemClick(view: View, position: Int, fish: Fish) {
-                val action = FishesFragmentDirections.actionGotoFishDetailFragment(fish)
+            CommonAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, position: Int) {
+                val selectedFish = viewModel.getFishes().value?.get(position)!!
+                val action = FishesFragmentDirections.actionGotoFishDetailFragment(selectedFish)
                 binding.root.findNavController().navigate(action)
             }
         })
