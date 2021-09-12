@@ -1,6 +1,7 @@
 package com.dispy.acnhdemo
 
 import com.dispy.acnhdemo.model.DateHandler
+import com.dispy.acnhdemo.view.custom.TimeScaleView
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -10,7 +11,7 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class ACNHUnitTest {
     @Test
     fun testGetDate() {
         assertEquals(9, DateHandler.getCurrentMonth())

@@ -13,7 +13,15 @@ import com.dispy.acnhdemo.R
  * Created by tpps8 on 2021/09/11
  *
  */
-class TimeScaleView(context: Context, attrs: AttributeSet): View(context, attrs) {
+class TimeScaleView: View {
+
+    constructor(context: Context): super(context) {
+        init(context, null)
+    }
+
+    constructor(context: Context, attrs: AttributeSet): super(context, attrs) {
+        init(context, attrs)
+    }
 
     private val bottomLinePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         strokeWidth = resources.getDimension(R.dimen.paint_width)
@@ -37,7 +45,7 @@ class TimeScaleView(context: Context, attrs: AttributeSet): View(context, attrs)
 
     private val startEndTimeArray = ArrayList<IntArray>()
 
-    init {
+    private fun init(context: Context, attrs: AttributeSet?) {
         context.theme.obtainStyledAttributes(
             attrs,
             R.styleable.TimeScaleView,
@@ -77,6 +85,8 @@ class TimeScaleView(context: Context, attrs: AttributeSet): View(context, attrs)
         invalidate()
         requestLayout()
     }
+
+    fun getAvailableTimes(): ArrayList<IntArray> = startEndTimeArray
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
