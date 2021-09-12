@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="paint_width">3dp</dimen>
+    <dimen name="bottom_line_width">3dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="padding">10dp</dimen>
     <dimen name="scale_line_1_length">20dp</dimen>
@@ -10,4 +10,7 @@
     <dimen name="scale_line_3_length">9dp</dimen>
     <dimen name="distance_between_scale_line_3_and_bottom">5dp</dimen>
     <dimen name="text_size_14">14sp</dimen>
+    <dimen name="current_time_line_width">2dp</dimen>
+    <dimen name="current_time_line_length">30dp</dimen>
+    <dimen name="current_time_line_padding">4dp</dimen>
 </resources>

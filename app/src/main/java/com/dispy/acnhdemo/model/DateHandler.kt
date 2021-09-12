@@ -17,5 +17,15 @@ class DateHandler {
             val sdf = SimpleDateFormat("MM", Locale.TAIWAN)
             return sdf.format(Date()).toInt()
         }
+
+        fun getCurrentHour(): Int {
+            val sdf = SimpleDateFormat("HH", Locale.TAIWAN)
+            return sdf.format(Date()).toInt()
+        }
+
+        fun getCurrentMinute(): Int {
+            val sdf = SimpleDateFormat("mm", Locale.TAIWAN)
+            return sdf.format(Date()).toInt()
+        }
     }
 }

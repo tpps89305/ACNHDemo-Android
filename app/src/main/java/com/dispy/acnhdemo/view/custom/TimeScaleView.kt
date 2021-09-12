@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.dispy.acnhdemo.R
+import com.dispy.acnhdemo.model.DateHandler
 
 /**
  * Created by tpps8 on 2021/09/11
@@ -24,7 +25,7 @@ class TimeScaleView: View {
     }
 
     private val bottomLinePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        strokeWidth = resources.getDimension(R.dimen.paint_width)
+        strokeWidth = resources.getDimension(R.dimen.bottom_line_width)
         style = Paint.Style.STROKE
     }
 
@@ -38,6 +39,11 @@ class TimeScaleView: View {
 
     private val valuePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         strokeWidth = resources.getDimension(R.dimen.scale_line_3_length)
+        color = ContextCompat.getColor(context, android.R.color.holo_green_light)
+    }
+
+    private val currentTimeLinePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        strokeWidth = resources.getDimension(R.dimen.current_time_line_width)
         color = ContextCompat.getColor(context, android.R.color.holo_red_light)
     }
 
@@ -152,6 +158,14 @@ class TimeScaleView: View {
                 val yText = height - padding - scaleLine1Length - rect.height() / 2
                 drawText(hourText, xText, yText, textPaint)
             }
+
+            val currentTimeInterval = bottomLineLength / 1440f
+            val currentTimeLineLength = resources.getDimension(R.dimen.current_time_line_length)
+            val timeLinePadding = resources.getDimension(R.dimen.current_time_line_padding)
+            val xLine = padding + currentTimeInterval * DateHandler.getCurrentHour() * 60 + DateHandler.getCurrentMinute()
+            val yStartLine = height - timeLinePadding
+            val yStopLine = height - timeLinePadding - currentTimeLineLength
+            drawLine(xLine, yStartLine, xLine, yStopLine, currentTimeLinePaint)
         }
     }
 
