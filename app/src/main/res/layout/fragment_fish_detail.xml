@@ -42,19 +42,45 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageFish"
                 tools:listitem="@layout/item_title_content" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listAvailableMonth"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="16dp"
+                android:background="@color/detail_square_background"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/listFishDetail"
-                tools:listitem="@layout/item_available_month" />
+                app:layout_constraintTop_toBottomOf="@+id/listFishDetail">
+
+                <com.dispy.acnhdemo.view.custom.TimeScaleView
+                    android:id="@+id/timeScaleView"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:availableTimes="@{fish.availability.timeArray}"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listAvailableMonth"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/timeScaleView"
+                    tools:listitem="@layout/item_available_month" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

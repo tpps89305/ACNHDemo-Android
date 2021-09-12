@@ -12,4 +12,5 @@
     <color name="tag_background_3">#FFDD73</color>
     <color name="page_background">#F7F4E0</color>
     <color name="card_background">#F9F8F2</color>
+    <color name="detail_square_background">#fff5ad</color>
 </resources>

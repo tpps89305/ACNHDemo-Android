@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="paint_width">3dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="padding">10dp</dimen>
+    <dimen name="scale_line_1_length">20dp</dimen>
+    <dimen name="scale_line_1_width">1dp</dimen>
+    <dimen name="scale_line_2_length">14dp</dimen>
+    <dimen name="distance_between_scale_line_2_and_bottom">3dp</dimen>
+    <dimen name="scale_line_3_length">9dp</dimen>
+    <dimen name="distance_between_scale_line_3_and_bottom">5dp</dimen>
+    <dimen name="text_size_14">14sp</dimen>
 </resources>

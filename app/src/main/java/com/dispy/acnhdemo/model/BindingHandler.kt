@@ -4,6 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.transform.RoundedCornersTransformation
+import com.dispy.acnhdemo.view.custom.TimeScaleView
 
 object BindingHandler {
 
@@ -19,5 +20,11 @@ object BindingHandler {
         imageView.load(url) {
             transformations(RoundedCornersTransformation(50F))
         }
+    }
+
+    @BindingAdapter("availableTimes")
+    @JvmStatic
+    fun bindingAvailableTimes(timeScaleView: TimeScaleView, array: List<Int>) {
+        timeScaleView.setAvailableTimes(array)
     }
 }
