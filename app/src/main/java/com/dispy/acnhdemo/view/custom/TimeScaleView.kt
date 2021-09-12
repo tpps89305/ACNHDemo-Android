@@ -162,7 +162,7 @@ class TimeScaleView: View {
             val currentTimeInterval = bottomLineLength / 1440f
             val currentTimeLineLength = resources.getDimension(R.dimen.current_time_line_length)
             val timeLinePadding = resources.getDimension(R.dimen.current_time_line_padding)
-            val xLine = padding + currentTimeInterval * DateHandler.getCurrentHour() * 60 + DateHandler.getCurrentMinute()
+            val xLine = padding + currentTimeInterval * (DateHandler.getCurrentHour() * 60 + DateHandler.getCurrentMinute())
             val yStartLine = height - timeLinePadding
             val yStopLine = height - timeLinePadding - currentTimeLineLength
             drawLine(xLine, yStartLine, xLine, yStopLine, currentTimeLinePaint)
