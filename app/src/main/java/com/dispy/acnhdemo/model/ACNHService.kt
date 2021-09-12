@@ -22,4 +22,8 @@ interface ACNHService {
     @Headers("Content-Type: application/json")
     @GET("sea")
     fun getSeaCreatures(): Call<ResponseBody>
+
+    @Headers("Content-Type: application/json")
+    @GET("bugs")
+    fun getBugs(): Call<ResponseBody>
 }

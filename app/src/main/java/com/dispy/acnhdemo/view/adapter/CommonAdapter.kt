@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dispy.acnhdemo.databinding.ItemCommonBinding
 import com.dispy.acnhdemo.model.ArrayHandler
 import com.dispy.acnhdemo.model.TagsDecoration
+import com.dispy.acnhdemo.model.bean.Bug
 import com.dispy.acnhdemo.model.bean.CommonItem
 import com.dispy.acnhdemo.model.bean.Fish
 import com.dispy.acnhdemo.model.bean.SeaCreature
@@ -66,6 +67,15 @@ class CommonAdapter(
     @JvmName("swapSeaCreatureItems")
     fun swapItems(newItems: List<SeaCreature>) {
         val commonItems = ArrayHandler.parseSeaCreaturesToCommonItems(newItems)
+
+        this.commonItems.addAll(commonItems)
+        commonItemsFiltered.addAll(commonItems)
+        notifyDataSetChanged()
+    }
+
+    @JvmName("swapBugItems")
+    fun swapItems(newItems: List<Bug>) {
+        val commonItems = ArrayHandler.parseBugsToCommonItems(newItems)
 
         this.commonItems.addAll(commonItems)
         commonItemsFiltered.addAll(commonItems)

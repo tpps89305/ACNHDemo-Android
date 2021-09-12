@@ -40,7 +40,10 @@
             app:destination="@id/navFish" />
         <action
             android:id="@+id/action_catalogFragment_to_seaCreaturesFragment"
-            app:destination="@id/seaCreaturesFragment" />
+            app:destination="@id/navSeaCreature" />
+        <action
+            android:id="@+id/action_catalogFragment_to_bugsFragment"
+            app:destination="@id/navBug" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -93,23 +96,49 @@
                 app:argType="com.dispy.acnhdemo.model.bean.Song" />
         </fragment>
     </navigation>
-    <fragment
-        android:id="@+id/seaCreaturesFragment"
-        android:name="com.dispy.acnhdemo.view.fragment.SeaCreaturesFragment"
-        android:label="fragment_sea_creatures"
-        tools:layout="@layout/fragment_sea_creatures" >
-        <action
-            android:id="@+id/action_seaCreaturesFragment_to_seaCreatureDetailFragment"
-            app:destination="@id/seaCreatureDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/seaCreatureDetailFragment"
-        android:name="com.dispy.acnhdemo.view.fragment.SeaCreatureDetailFragment"
-        android:label="fragment_sea_creature_detail"
-        tools:layout="@layout/fragment_sea_creature_detail" >
-        <argument
-            android:name="seaCreature"
-            app:argType="com.dispy.acnhdemo.model.bean.SeaCreature" />
-    </fragment>
+    <navigation
+        android:id="@+id/navSeaCreature"
+        android:label="SeaCreature"
+        app:startDestination="@id/seaCreaturesFragment">
+        <fragment
+            android:id="@+id/seaCreaturesFragment"
+            android:name="com.dispy.acnhdemo.view.fragment.SeaCreaturesFragment"
+            android:label="fragment_sea_creatures"
+            tools:layout="@layout/fragment_sea_creatures">
+            <action
+                android:id="@+id/action_seaCreaturesFragment_to_seaCreatureDetailFragment"
+                app:destination="@id/seaCreatureDetailFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/seaCreatureDetailFragment"
+            android:name="com.dispy.acnhdemo.view.fragment.SeaCreatureDetailFragment"
+            android:label="fragment_sea_creature_detail"
+            tools:layout="@layout/fragment_sea_creature_detail">
+            <argument
+                android:name="seaCreature"
+                app:argType="com.dispy.acnhdemo.model.bean.SeaCreature" />
+        </fragment>
+    </navigation>
+    <navigation android:id="@+id/navBug"
+        app:startDestination="@id/bugsFragment">
+        <fragment
+            android:id="@+id/bugDetailFragment"
+            android:name="com.dispy.acnhdemo.view.fragment.BugDetailFragment"
+            android:label="fragment_bug_detail"
+            tools:layout="@layout/fragment_bug_detail">
+            <argument
+                android:name="bug"
+                app:argType="com.dispy.acnhdemo.model.bean.Bug" />
+        </fragment>
+        <fragment
+            android:id="@+id/bugsFragment"
+            android:name="com.dispy.acnhdemo.view.fragment.BugsFragment"
+            android:label="fragment_bugs"
+            tools:layout="@layout/fragment_bugs">
+            <action
+                android:id="@+id/action_bugsFragment_to_bugDetailFragment"
+                app:destination="@id/bugDetailFragment" />
+        </fragment>
+    </navigation>
 
 </navigation>

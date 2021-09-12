@@ -1,5 +1,6 @@
 package com.dispy.acnhdemo.model
 
+import com.dispy.acnhdemo.model.bean.Bug
 import com.dispy.acnhdemo.model.bean.CommonItem
 import com.dispy.acnhdemo.model.bean.Fish
 import com.dispy.acnhdemo.model.bean.SeaCreature
@@ -32,6 +33,18 @@ class ArrayHandler {
                 val tags = ArrayList<String>()
                 tags.add("Sell: ${seaCreature.price}")
                 val commonItem = CommonItem(seaCreature.fileName, seaCreature.name.nameTWzh, seaCreature.iconURI, tags)
+                commonItems.add(commonItem)
+            }
+            return commonItems
+        }
+
+        fun parseBugsToCommonItems(bugs: List<Bug>): List<CommonItem> {
+            val commonItems = ArrayList<CommonItem>()
+            for (bug in bugs) {
+                val tags = ArrayList<String>()
+                tags.add("Sell: ${bug.price}")
+                tags.add("Sell Flick: ${bug.priceFlick}")
+                val commonItem = CommonItem(bug.fileName, bug.name.nameTWzh, bug.iconURI, tags)
                 commonItems.add(commonItem)
             }
             return commonItems
