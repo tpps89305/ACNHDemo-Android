@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="fish"
-            type="com.dispy.acnhdemo.model.bean.Fish" />
+            name="seaCreature"
+            type="com.dispy.acnhdemo.model.bean.SeaCreature" />
     </data>
 
     <ScrollView
@@ -15,11 +15,13 @@
         android:background="@color/page_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:context=".SeaCreatureDetailFragment">
 
             <ImageView
-                android:id="@+id/imageFish"
+                android:id="@+id/imageSeaCreature"
                 android:layout_width="300dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="32dp"
@@ -28,19 +30,22 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:loadUrl="@{fish.imageURI}" />
+                app:loadUrl="@{seaCreature.imageURI}" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listFishDetail"
+                android:id="@+id/listSeaCreatureDetail"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="100dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageFish"
-                tools:listitem="@layout/item_title_content" />
+                app:layout_constraintTop_toBottomOf="@+id/imageSeaCreature"
+                tools:listitem="@layout/item_title_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -53,7 +58,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/listFishDetail">
+                app:layout_constraintTop_toBottomOf="@+id/listSeaCreatureDetail">
 
                 <TextView
                     android:id="@+id/textView2"
@@ -75,7 +80,7 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="32dp"
-                    app:availableTimes="@{fish.availability.timeArray}"
+                    app:availableTimes="@{seaCreature.availability.timeArray}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"

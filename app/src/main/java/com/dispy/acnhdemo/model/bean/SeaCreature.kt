@@ -1,6 +1,7 @@
 package com.dispy.acnhdemo.model.bean
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * ACNH Demo
@@ -33,4 +34,4 @@ data class SeaCreature (
 
     @SerializedName("museum-phrase")
     val museumPhrase: String
-)
+) : Serializable

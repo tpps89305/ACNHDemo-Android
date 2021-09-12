@@ -23,6 +23,13 @@ class SeaCreaturesViewModel : ViewModelBase() {
         return seaCreatures
     }
 
+    fun getSeaCreature(fileName: String): SeaCreature {
+        val result = seaCreatures.value?.filter {
+            it.fileName == fileName
+        }
+        return result!!.first()
+    }
+
     private fun loadData() {
         val call: Call<ResponseBody> = acnhService.getSeaCreatures()
         call.enqueue(object : Callback<ResponseBody> {

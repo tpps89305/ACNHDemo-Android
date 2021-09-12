@@ -35,6 +35,15 @@ class SeaCreaturesFragment : BaseFragment() {
             seaCreaturesAdapter.swapItems(data)
         })
 
+        seaCreaturesAdapter.setOnItemClickListener(object :
+        CommonAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, fileName: String) {
+                val selected = viewModel.getSeaCreature(fileName)
+                val action = SeaCreaturesFragmentDirections.actionSeaCreaturesFragmentToSeaCreatureDetailFragment(selected)
+                binding.root.findNavController().navigate(action)
+            }
+        })
+
         return binding.root
     }
 

@@ -97,6 +97,19 @@
         android:id="@+id/seaCreaturesFragment"
         android:name="com.dispy.acnhdemo.view.fragment.SeaCreaturesFragment"
         android:label="fragment_sea_creatures"
-        tools:layout="@layout/fragment_sea_creatures" />
+        tools:layout="@layout/fragment_sea_creatures" >
+        <action
+            android:id="@+id/action_seaCreaturesFragment_to_seaCreatureDetailFragment"
+            app:destination="@id/seaCreatureDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/seaCreatureDetailFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.SeaCreatureDetailFragment"
+        android:label="fragment_sea_creature_detail"
+        tools:layout="@layout/fragment_sea_creature_detail" >
+        <argument
+            android:name="seaCreature"
+            app:argType="com.dispy.acnhdemo.model.bean.SeaCreature" />
+    </fragment>
 
 </navigation>

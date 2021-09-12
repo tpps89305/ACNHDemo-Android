@@ -12,8 +12,8 @@ data class Availability (
     val time: String,
     val isAllDay: Boolean,
     val isAllYear: Boolean,
-    val location: String = "N/A",
-    val rarity: String = "N/A",
+    val location: String,
+    val rarity: String,
 
     @SerializedName("month-array-northern")
     val monthArrayNorthern: List<Int>,
