@@ -41,8 +41,8 @@ class FishesFragment : BaseFragment() {
 
         fishesAdapter.setOnItemClickListener(object :
             CommonAdapter.OnItemClickListener {
-            override fun onItemClick(view: View, position: Int) {
-                val selectedFish = viewModel.getFishes().value?.get(position)!!
+            override fun onItemClick(view: View, fileName: String) {
+                val selectedFish = viewModel.getFish(fileName)
                 val action = FishesFragmentDirections.actionGotoFishDetailFragment(selectedFish)
                 binding.root.findNavController().navigate(action)
             }

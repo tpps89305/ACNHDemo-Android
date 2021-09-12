@@ -23,6 +23,13 @@ class FishesViewModel : ViewModelBase() {
         return fishes
     }
 
+    fun getFish(fileName: String): Fish {
+        val result = fishes.value?.filter {
+            it.fileName == fileName
+        }
+        return result!!.first()
+    }
+
     private fun loadData() {
         val call: Call<ResponseBody> = acnhService.getFishes()
         call.enqueue(object : Callback<ResponseBody> {

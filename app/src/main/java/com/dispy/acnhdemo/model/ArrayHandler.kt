@@ -20,7 +20,7 @@ class ArrayHandler {
                 val tags = ArrayList<String>()
                 tags.add("Sell: ${fish.price}")
                 tags.add("Sell CJ: ${fish.priceCj}")
-                val commonItem = CommonItem(fish.name.nameTWzh, fish.iconURI, tags)
+                val commonItem = CommonItem(fish.fileName, fish.name.nameTWzh, fish.iconURI, tags)
                 commonItems.add(commonItem)
             }
             return commonItems
@@ -31,7 +31,7 @@ class ArrayHandler {
             for (seaCreature in seaCreatures) {
                 val tags = ArrayList<String>()
                 tags.add("Sell: ${seaCreature.price}")
-                val commonItem = CommonItem(seaCreature.name.nameTWzh, seaCreature.iconURI, tags)
+                val commonItem = CommonItem(seaCreature.fileName, seaCreature.name.nameTWzh, seaCreature.iconURI, tags)
                 commonItems.add(commonItem)
             }
             return commonItems

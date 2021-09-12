@@ -7,7 +7,8 @@ package com.dispy.acnhdemo.model.bean
  * Created by Dispy on 2021/09/04
  * tpps89305@hotmail.com
  */
-data class CommonItem (
+data class CommonItem(
+    val fileName: String,
     val name: String,
     val iconURI: String,
     val tags: ArrayList<String>

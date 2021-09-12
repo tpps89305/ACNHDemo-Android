@@ -40,7 +40,7 @@ class CommonAdapter(
         val item = commonItemsFiltered[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener?.onItemClick(holder.itemView, position)
+            listener?.onItemClick(holder.itemView, item.fileName)
         }
 
         with(holder.listTags) {
@@ -85,7 +85,7 @@ class CommonAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int)
+        fun onItemClick(view: View, fileName: String)
     }
 
     override fun getFilter(): Filter {
