@@ -1,9 +1,6 @@
 package com.dispy.acnhdemo.model
 
-import com.dispy.acnhdemo.model.bean.Bug
-import com.dispy.acnhdemo.model.bean.CommonItem
-import com.dispy.acnhdemo.model.bean.Fish
-import com.dispy.acnhdemo.model.bean.SeaCreature
+import com.dispy.acnhdemo.model.bean.*
 
 /**
  * ACNH Demo
@@ -15,7 +12,9 @@ import com.dispy.acnhdemo.model.bean.SeaCreature
 class ArrayHandler {
 
     companion object {
-        fun parseFishesToCommonItems(fishes: List<Fish>): List<CommonItem> {
+
+        @JvmName("parseFishesToCommonItems")
+        fun parseToCommonItems(fishes: List<Fish>): List<CommonItem> {
             val commonItems = ArrayList<CommonItem>()
             for (fish in fishes) {
                 val tags = ArrayList<String>()
@@ -27,7 +26,8 @@ class ArrayHandler {
             return commonItems
         }
 
-        fun parseSeaCreaturesToCommonItems(seaCreatures: List<SeaCreature>): List<CommonItem> {
+        @JvmName("parseSeaCreaturesToCommonItems")
+        fun parseToCommonItems(seaCreatures: List<SeaCreature>): List<CommonItem> {
             val commonItems = ArrayList<CommonItem>()
             for (seaCreature in seaCreatures) {
                 val tags = ArrayList<String>()
@@ -38,13 +38,27 @@ class ArrayHandler {
             return commonItems
         }
 
-        fun parseBugsToCommonItems(bugs: List<Bug>): List<CommonItem> {
+        @JvmName("parseBugsToCommonItems")
+        fun parseToCommonItems(bugs: List<Bug>): List<CommonItem> {
             val commonItems = ArrayList<CommonItem>()
             for (bug in bugs) {
                 val tags = ArrayList<String>()
                 tags.add("Sell: ${bug.price}")
                 tags.add("Sell Flick: ${bug.priceFlick}")
                 val commonItem = CommonItem(bug.fileName, bug.name.nameTWzh, bug.iconURI, tags)
+                commonItems.add(commonItem)
+            }
+            return commonItems
+        }
+
+        @JvmName("parseFossilsToCommonItems")
+        fun parseToCommonItems(fossils: List<Fossil>): List<CommonItem> {
+            val commonItems = ArrayList<CommonItem>()
+            for (fossil in fossils) {
+                val tags = ArrayList<String>()
+                tags.add("Sell: ${fossil.price}")
+                val commonItem =
+                    CommonItem(fossil.fileName, fossil.name.nameTWzh, fossil.imageURI, tags)
                 commonItems.add(commonItem)
             }
             return commonItems

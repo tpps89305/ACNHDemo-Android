@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_villagers_list">
         <action
             android:id="@+id/action_show_villager_detail"
-            app:destination="@id/villagerrDetailFragment"
+            app:destination="@id/villagerDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
-        android:id="@+id/villagerrDetailFragment"
+        android:id="@+id/villagerDetailFragment"
         android:name="com.dispy.acnhdemo.view.fragment.VillagerDetailFragment"
-        android:label="fragment_villagerr_detail"
+        android:label="fragment_villager_detail"
         tools:layout="@layout/fragment_villager_detail">
         <argument
             android:name="villager"
@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_bugsFragment"
             app:destination="@id/navBug" />
+        <action
+            android:id="@+id/action_catalogFragment_to_fossilsFragment"
+            app:destination="@id/fossilsFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -140,5 +143,10 @@
                 app:destination="@id/bugDetailFragment" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/fossilsFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.FossilsFragment"
+        android:label="fragment_fossils"
+        tools:layout="@layout/fragment_fossils" />
 
 </navigation>
