@@ -64,5 +64,19 @@ class ArrayHandler {
             return commonItems
         }
 
+        @JvmName("parseArtToCommonItems")
+        fun parseToCommonItems(art: List<Art>): List<CommonItem> {
+            val commonItems = ArrayList<CommonItem>()
+            for (each in art) {
+                val tags = ArrayList<String>()
+                tags.add("Buy: ${each.buyPrice}")
+                tags.add("Sell: ${each.sellPrice}")
+                val commonItem =
+                    CommonItem(each.fileName, each.name.nameTWzh, each.imageURI, tags)
+                commonItems.add(commonItem)
+            }
+            return commonItems
+        }
+
     }
 }

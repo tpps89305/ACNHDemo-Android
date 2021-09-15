@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_fossilsFragment"
             app:destination="@id/fossilsFragment" />
+        <action
+            android:id="@+id/action_catalogFragment_to_artFragment"
+            app:destination="@id/artFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -148,5 +151,10 @@
         android:name="com.dispy.acnhdemo.view.fragment.FossilsFragment"
         android:label="fragment_fossils"
         tools:layout="@layout/fragment_fossils" />
+    <fragment
+        android:id="@+id/artFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.ArtFragment"
+        android:label="fragment_art"
+        tools:layout="@layout/fragment_art" />
 
 </navigation>

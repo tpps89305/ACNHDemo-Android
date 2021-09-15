@@ -88,6 +88,15 @@ class CommonAdapter(
         notifyDataSetChanged()
     }
 
+    @JvmName("swapArtItems")
+    fun swapItems(newItems: List<Art>) {
+        val commonItems = ArrayHandler.parseToCommonItems(newItems)
+
+        this.commonItems.addAll(commonItems)
+        commonItemsFiltered.addAll(commonItems)
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(private val binding: ItemCommonBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
