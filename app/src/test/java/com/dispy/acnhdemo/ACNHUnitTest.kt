@@ -1,7 +1,6 @@
 package com.dispy.acnhdemo
 
 import com.dispy.acnhdemo.model.DateHandler
-import com.dispy.acnhdemo.view.custom.TimeScaleView
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -15,5 +14,11 @@ class ACNHUnitTest {
     @Test
     fun testGetDate() {
         assertEquals(9, DateHandler.getCurrentMonth())
+    }
+
+    @Test
+    fun testGetTime() {
+        assertEquals(22, DateHandler.getCurrentHour())
+        assertEquals(56, DateHandler.getCurrentMinute())
     }
 }

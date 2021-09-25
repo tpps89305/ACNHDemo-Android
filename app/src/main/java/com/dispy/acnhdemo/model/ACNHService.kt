@@ -34,4 +34,8 @@ interface ACNHService {
     @Headers("Content-Type: application/json")
     @GET("art")
     fun getArt(): Call<ResponseBody>
+
+    @Headers("Content-Type: application/json")
+    @GET("backgroundmusic")
+    fun getBGM(): Call<ResponseBody>
 }

@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_artFragment"
             app:destination="@id/artFragment" />
+        <action
+            android:id="@+id/action_catalogFragment_to_BGMFragment"
+            app:destination="@id/BGMFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -156,5 +159,10 @@
         android:name="com.dispy.acnhdemo.view.fragment.ArtFragment"
         android:label="fragment_art"
         tools:layout="@layout/fragment_art" />
+    <fragment
+        android:id="@+id/BGMFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.BGMFragment"
+        android:label="fragment_bgm"
+        tools:layout="@layout/fragment_bgm" />
 
 </navigation>
