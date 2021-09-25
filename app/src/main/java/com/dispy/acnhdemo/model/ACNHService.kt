@@ -38,4 +38,8 @@ interface ACNHService {
     @Headers("Content-Type: application/json")
     @GET("backgroundmusic")
     fun getBGM(): Call<ResponseBody>
+
+    @Headers("Content-Type: application/json")
+    @GET("houseware")
+    fun getHouseware(): Call<ResponseBody>
 }

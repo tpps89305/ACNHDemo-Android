@@ -78,5 +78,20 @@ class ArrayHandler {
             return commonItems
         }
 
+        @JvmName("parseHousewaresToCommonItems")
+        fun parseToCommonItems(housewares: List<Houseware>): List<CommonItem> {
+            val commonItems = ArrayList<CommonItem>()
+            for (each in housewares) {
+                val tags = ArrayList<String>()
+                if (each.buyPrice != null) {
+                    tags.add("Bug: ${each.buyPrice}")
+                }
+                tags.add("Sell: ${each.sellPrice}")
+                val commonItem = CommonItem(each.fileName, each.name.nameTWzh, each.imageURI, tags)
+                commonItems.add(commonItem)
+            }
+            return commonItems
+        }
+
     }
 }

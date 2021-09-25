@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_BGMFragment"
             app:destination="@id/BGMFragment" />
+        <action
+            android:id="@+id/action_catalogFragment_to_housewaresFragment"
+            app:destination="@id/housewaresFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -164,5 +167,10 @@
         android:name="com.dispy.acnhdemo.view.fragment.BGMFragment"
         android:label="fragment_bgm"
         tools:layout="@layout/fragment_bgm" />
+    <fragment
+        android:id="@+id/housewaresFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.HousewaresFragment"
+        android:label="fragment_housewares"
+        tools:layout="@layout/fragment_housewares" />
 
 </navigation>
