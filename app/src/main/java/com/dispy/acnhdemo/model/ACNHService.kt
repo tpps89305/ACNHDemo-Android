@@ -42,4 +42,8 @@ interface ACNHService {
     @Headers("Content-Type: application/json")
     @GET("houseware")
     fun getHouseware(): Call<ResponseBody>
+
+    @Headers("Content-Type: application/json")
+    @GET("wallmounted")
+    fun getWallmounted(): Call<ResponseBody>
 }

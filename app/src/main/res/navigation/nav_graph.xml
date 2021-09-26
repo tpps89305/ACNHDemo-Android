@@ -56,6 +56,9 @@
         <action
             android:id="@+id/action_catalogFragment_to_housewaresFragment"
             app:destination="@id/navHousewares" />
+        <action
+            android:id="@+id/action_catalogFragment_to_wallmountedFragment"
+            app:destination="@id/wallmountedFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -188,5 +191,23 @@
                 app:destination="@id/housewareDetailFragment" />
         </fragment>
     </navigation>
+    <fragment
+        android:id="@+id/wallmountedFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.WallmountedFragment"
+        android:label="fragment_wallmounted"
+        tools:layout="@layout/fragment_wallmounted" >
+        <action
+            android:id="@+id/action_wallmountedFragment_to_wallmountedDetailFragment"
+            app:destination="@id/wallmountedDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wallmountedDetailFragment"
+        android:name="com.dispy.acnhdemo.view.fragment.WallmountedDetailFragment"
+        android:label="fragment_wallmounted_detail"
+        tools:layout="@layout/fragment_wallmounted_detail" >
+        <argument
+            android:name="wallmounted"
+            app:argType="com.dispy.acnhdemo.model.bean.Wallmounted" />
+    </fragment>
 
 </navigation>

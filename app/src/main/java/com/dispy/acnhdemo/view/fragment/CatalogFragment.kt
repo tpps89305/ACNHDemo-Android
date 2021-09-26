@@ -47,6 +47,7 @@ class CatalogFragment : BaseFragment() {
                     5 -> CatalogFragmentDirections.actionCatalogFragmentToArtFragment()
                     6 -> CatalogFragmentDirections.actionCatalogFragmentToBGMFragment()
                     7 -> CatalogFragmentDirections.actionCatalogFragmentToHousewaresFragment()
+                    8 -> CatalogFragmentDirections.actionCatalogFragmentToWallmountedFragment()
                     else -> throw IllegalArgumentException("Cannot find the catalog $position")
                 }
                 binding.root.findNavController().navigate(action)

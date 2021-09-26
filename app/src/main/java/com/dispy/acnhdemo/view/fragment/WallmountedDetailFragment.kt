@@ -8,33 +8,33 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.dispy.acnhdemo.databinding.FragmentHousewareDetailBinding
+import com.dispy.acnhdemo.databinding.FragmentWallmountedDetailBinding
 import com.dispy.acnhdemo.view.adapter.CommonDetailAdapter
 import com.dispy.acnhdemo.view.layoutmanager.DetailListLayoutManager
-import com.dispy.acnhdemo.viewmodel.HousewareDetailViewModel
+import com.dispy.acnhdemo.viewmodel.WallmountedDetailViewModel
 
-class HousewareDetailFragment : BaseFragment() {
+class WallmountedDetailFragment : BaseFragment() {
 
-    private val args: HousewareDetailFragmentArgs by navArgs()
-    private lateinit var commonAdapter: CommonDetailAdapter
-    private lateinit var binding: FragmentHousewareDetailBinding
-    private lateinit var viewModel: HousewareDetailViewModel
+    private val args: WallmountedDetailFragmentArgs by navArgs()
+    private lateinit var binding: FragmentWallmountedDetailBinding
+    private lateinit var viewModel: WallmountedDetailViewModel
+    private lateinit var commonDetailAdapter: CommonDetailAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHousewareDetailBinding.inflate(layoutInflater)
-        initActionBar(args.houseware.name.nameTWzh)
-        viewModel = ViewModelProvider(this).get(HousewareDetailViewModel::class.java)
-        commonAdapter = CommonDetailAdapter(
-            args.houseware.imageURI,
-            viewModel.getDetailInfo(args.houseware)
+        binding = FragmentWallmountedDetailBinding.inflate(layoutInflater)
+        initActionBar(args.wallmounted.name.nameTWzh)
+        viewModel = ViewModelProvider(this).get(WallmountedDetailViewModel::class.java)
+        commonDetailAdapter = CommonDetailAdapter(
+            args.wallmounted.imageURI,
+            viewModel.getDetailInfo(args.wallmounted)
         )
 
-        with(binding.listHousewareDetail) {
+        with(binding.listWallmounted) {
             layoutManager = DetailListLayoutManager(context)
-            adapter = commonAdapter
+            adapter = commonDetailAdapter
         }
 
         return binding.root
