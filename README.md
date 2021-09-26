@@ -1,7 +1,20 @@
 # ACNHDemo
+
+![Splash](readme/ACNHDemo.jpg)
+
 This is an Android APP Demo which build with Kotlin and Android Studio.
 
 The App allow user browse gaming strategy of "Animal Crossing: New Horizon".
+
+# Screenshot
+
+![Villager](readme/villager.png)
+
+Check villager's detail info.
+
+![Bug](readme/bug.png)
+
+Check catalog's info, price, available time.
 
 # Features
 Provide information of:
@@ -27,14 +40,14 @@ Provide information of:
 And so on. (More Features are in development)
 
 # Development progress
-## Stage 1
+## Stage 1 (Finish)
 Functions to browse villagers, catalog.
 
 ## Stage 2
 Dashboard's function.
 
 # Technical Specifications
-- Language: Kotlin 1.4.10
+- Language: Kotlin 1.5.30
 - IDE: Android Studio - Arctic Fox
 - Package Management: Gradle
 
