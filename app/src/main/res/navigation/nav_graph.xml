@@ -55,7 +55,7 @@
             app:destination="@id/BGMFragment" />
         <action
             android:id="@+id/action_catalogFragment_to_housewaresFragment"
-            app:destination="@id/housewaresFragment" />
+            app:destination="@id/navHousewares" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
@@ -167,10 +167,26 @@
         android:name="com.dispy.acnhdemo.view.fragment.BGMFragment"
         android:label="fragment_bgm"
         tools:layout="@layout/fragment_bgm" />
-    <fragment
-        android:id="@+id/housewaresFragment"
-        android:name="com.dispy.acnhdemo.view.fragment.HousewaresFragment"
-        android:label="fragment_housewares"
-        tools:layout="@layout/fragment_housewares" />
+    <navigation android:id="@+id/navHousewares"
+        app:startDestination="@id/housewaresFragment">
+        <fragment
+            android:id="@+id/housewareDetailFragment"
+            android:name="com.dispy.acnhdemo.view.fragment.HousewareDetailFragment"
+            android:label="fragment_houseware_detail"
+            tools:layout="@layout/fragment_houseware_detail">
+            <argument
+                android:name="houseware"
+                app:argType="com.dispy.acnhdemo.model.bean.Houseware" />
+        </fragment>
+        <fragment
+            android:id="@+id/housewaresFragment"
+            android:name="com.dispy.acnhdemo.view.fragment.HousewaresFragment"
+            android:label="fragment_housewares"
+            tools:layout="@layout/fragment_housewares">
+            <action
+                android:id="@+id/action_housewaresFragment_to_housewareDetailFragment"
+                app:destination="@id/housewareDetailFragment" />
+        </fragment>
+    </navigation>
 
 </navigation>

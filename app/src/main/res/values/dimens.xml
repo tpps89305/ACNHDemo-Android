@@ -13,4 +13,5 @@
     <dimen name="current_time_line_width">2dp</dimen>
     <dimen name="current_time_line_length">30dp</dimen>
     <dimen name="current_time_line_padding">4dp</dimen>
+    <dimen name="detail_card_radius">10dp</dimen>
 </resources>

@@ -34,6 +34,15 @@ class HousewaresFragment : BaseFragment() {
             housewaresAdapter.swapItems(data)
         })
 
+        housewaresAdapter.setOnItemClickListener(object: CommonAdapter.OnItemClickListener {
+            override fun onItemClick(view: View, fileName: String) {
+                val selected = viewModel.getHouseware(fileName)
+                val action = HousewaresFragmentDirections.actionHousewaresFragmentToHousewareDetailFragment(selected)
+                binding.root.findNavController().navigate(action)
+            }
+
+        })
+
         return binding.root
     }
 

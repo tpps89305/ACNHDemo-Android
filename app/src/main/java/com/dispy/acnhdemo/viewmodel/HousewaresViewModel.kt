@@ -21,6 +21,13 @@ class HousewaresViewModel : ViewModelBase() {
 
     fun getHousewares(): LiveData<List<Houseware>> = housewares
 
+    fun getHouseware(fileName: String): Houseware {
+        val result = housewares.value?.filter {
+            it.fileName == fileName
+        }
+        return result!!.first()
+    }
+
     private fun loadData() {
         val call: Call<ResponseBody> = acnhService.getHouseware()
         call.enqueue(object : Callback<ResponseBody> {
