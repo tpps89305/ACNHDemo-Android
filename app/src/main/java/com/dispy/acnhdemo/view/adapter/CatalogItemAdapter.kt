@@ -4,9 +4,10 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.dispy.acnhdemo.databinding.ItemCatalogBinding
+import com.dispy.acnhdemo.model.bean.CatalogItem
 
 class CatalogItemAdapter(
-    private val values: Array<String>
+    private val values: Array<CatalogItem>
 ) : RecyclerView.Adapter<CatalogItemAdapter.ViewHolder>() {
 
     private lateinit var listener: OnItemClickListener
@@ -37,8 +38,8 @@ class CatalogItemAdapter(
 
     inner class ViewHolder(private val binding: ItemCatalogBinding) :
             RecyclerView.ViewHolder(binding.root) {
-        fun bind(itemName: String) {
-            binding.itemName = itemName
+        fun bind(item: CatalogItem) {
+            binding.catalogItem = item
             binding.executePendingBindings()
         }
     }

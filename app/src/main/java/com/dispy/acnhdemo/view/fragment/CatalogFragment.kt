@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentCatalogBinding
+import com.dispy.acnhdemo.model.bean.CatalogItem
 import com.dispy.acnhdemo.view.adapter.CatalogItemAdapter
 
 /**
@@ -18,7 +19,18 @@ class CatalogFragment : BaseFragment() {
 
     private var columnCount = 1
     private val catalogAdapter by lazy {
-        CatalogItemAdapter(resources.getStringArray(R.array.catalog_items))
+        val catalogItems = arrayOf(
+            CatalogItem(R.drawable.icon_music, resources.getString(R.string.songs)),
+            CatalogItem(R.drawable.icon_fish, resources.getString(R.string.fishes)),
+            CatalogItem(R.drawable.icon_sea_creature, resources.getString(R.string.sea_creatures)),
+            CatalogItem(R.drawable.icon_bug, resources.getString(R.string.bugs)),
+            CatalogItem(R.drawable.icon_fossils, resources.getString(R.string.fossils)),
+            CatalogItem(R.drawable.icon_art, resources.getString(R.string.art)),
+            CatalogItem(R.drawable.icon_music, resources.getString(R.string.bgm)),
+            CatalogItem(R.drawable.icon_houseware, resources.getString(R.string.housewares)),
+            CatalogItem(R.drawable.icon_wallmounted, resources.getString(R.string.wallmounted))
+        )
+        CatalogItemAdapter(catalogItems)
     }
 
     override fun onCreateView(
