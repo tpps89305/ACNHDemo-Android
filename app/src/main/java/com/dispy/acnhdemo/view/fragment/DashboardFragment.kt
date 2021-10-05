@@ -1,62 +1,67 @@
 package com.dispy.acnhdemo.view.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.dispy.acnhdemo.R
+import com.dispy.acnhdemo.databinding.FragmentDashboardBinding
+import com.dispy.acnhdemo.model.bean.AvailableNowInfo
+import com.dispy.acnhdemo.view.adapter.AvailableNowAdapter
+import com.dispy.acnhdemo.view.layoutmanager.AvailableNowListLayoutManager
+import com.dispy.acnhdemo.viewmodel.DashboardViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class DashboardFragment : BaseFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DashboardFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class DashboardFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var viewModel: DashboardViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val availableNowAdapter by lazy {
+        val items = arrayOf(
+            AvailableNowInfo(
+                R.drawable.icon_bug,
+                "0",
+                resources.getString(R.string.bugs)
+            ),
+            AvailableNowInfo(
+                R.drawable.icon_fish,
+                "0", resources.getString(R.string.fishes)
+            ),
+            AvailableNowInfo(
+                R.drawable.icon_sea_creature,
+                "0",
+                resources.getString(R.string.sea_creatures)
+            )
+        )
+        AvailableNowAdapter(items)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        (activity as AppCompatActivity).supportActionBar?.title = resources.getString(R.string.app_name)
-        return inflater.inflate(R.layout.fragment_dashboard, container, false)
+    ): View {
+        val binding = FragmentDashboardBinding.inflate(layoutInflater)
+        initActionBar(resources.getString(R.string.app_name), false)
+        viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
+
+        with(binding.listAvailableNow) {
+            layoutManager = AvailableNowListLayoutManager(context)
+            adapter = availableNowAdapter
+        }
+
+        with(viewModel) {
+            getAvailableBugs().observe(viewLifecycleOwner, { data ->
+                availableNowAdapter.swapItem(data, 0)
+            })
+            getAvailableFishes().observe(viewLifecycleOwner, { data ->
+                availableNowAdapter.swapItem(data, 1)
+            })
+            getAvailableSeaCreature().observe(viewLifecycleOwner, { data ->
+                availableNowAdapter.swapItem(data, 2)
+            })
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DashboardFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DashboardFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
