@@ -9,7 +9,9 @@ import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentDashboardBinding
 import com.dispy.acnhdemo.model.bean.AvailableNowInfo
 import com.dispy.acnhdemo.view.adapter.AvailableNowAdapter
+import com.dispy.acnhdemo.view.adapter.DailyTaskAdapter
 import com.dispy.acnhdemo.view.layoutmanager.AvailableNowListLayoutManager
+import com.dispy.acnhdemo.view.layoutmanager.DailyTaskListLayoutManager
 import com.dispy.acnhdemo.viewmodel.DashboardViewModel
 
 class DashboardFragment : BaseFragment() {
@@ -35,6 +37,7 @@ class DashboardFragment : BaseFragment() {
         )
         AvailableNowAdapter(items)
     }
+    private val dailyTaskAdapter = DailyTaskAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +50,11 @@ class DashboardFragment : BaseFragment() {
         with(binding.listAvailableNow) {
             layoutManager = AvailableNowListLayoutManager(context)
             adapter = availableNowAdapter
+        }
+
+        with(binding.listDailyTask) {
+            layoutManager = DailyTaskListLayoutManager(context)
+            adapter = dailyTaskAdapter
         }
 
         with(viewModel) {
