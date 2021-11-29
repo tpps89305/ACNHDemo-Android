@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.dispy.acnhdemo.databinding.ItemDailyTaskBinding
+import com.dispy.acnhdemo.model.bean.DailyTask
 
 /**
  * ACNH Demo
@@ -13,6 +14,13 @@ import com.dispy.acnhdemo.databinding.ItemDailyTaskBinding
  * tpps89305@hotmail.com
  */
 class DailyTaskAdapter: RecyclerView.Adapter<DailyTaskAdapter.ViewHolder>() {
+
+    private var listener: OnItemClickListener? = null
+    private val list: ArrayList<DailyTask> = arrayListOf()
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyTaskAdapter.ViewHolder {
         return ViewHolder(
@@ -25,16 +33,31 @@ class DailyTaskAdapter: RecyclerView.Adapter<DailyTaskAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: DailyTaskAdapter.ViewHolder, position: Int) {
-
+        holder.bind(list[position])
+        holder.itemView.setOnClickListener {
+            list[position].currentValue = list[position].currentValue?.plus(1)
+            listener?.onItemClick(list[position])
+        }
     }
 
-    override fun getItemCount(): Int = 8
+    override fun getItemCount(): Int = list.count()
+
+    fun submitList(newList: List<DailyTask>) {
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(private val binding: ItemDailyTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind() {
-                TODO("bind data to ItemDailyTask")
+            fun bind(dailyTask: DailyTask) {
+                binding.dailyTask = dailyTask
+                binding.executePendingBindings()
             }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(dailyTask: DailyTask)
     }
 
 }

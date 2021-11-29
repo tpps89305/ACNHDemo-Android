@@ -4,19 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.dispy.acnhdemo.ACNHApplication
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentDashboardBinding
 import com.dispy.acnhdemo.model.bean.AvailableNowInfo
+import com.dispy.acnhdemo.model.bean.DailyTask
 import com.dispy.acnhdemo.view.adapter.AvailableNowAdapter
 import com.dispy.acnhdemo.view.adapter.DailyTaskAdapter
 import com.dispy.acnhdemo.view.layoutmanager.AvailableNowListLayoutManager
 import com.dispy.acnhdemo.view.layoutmanager.DailyTaskListLayoutManager
 import com.dispy.acnhdemo.viewmodel.DashboardViewModel
+import com.dispy.acnhdemo.viewmodel.DashboardViewModelFactory
 
 class DashboardFragment : BaseFragment() {
 
-    private lateinit var viewModel: DashboardViewModel
+    private val viewModel: DashboardViewModel by viewModels {
+        DashboardViewModelFactory((activity?.application as ACNHApplication).repository)
+    }
 
     private val availableNowAdapter by lazy {
         val items = arrayOf(
@@ -45,7 +50,6 @@ class DashboardFragment : BaseFragment() {
     ): View {
         val binding = FragmentDashboardBinding.inflate(layoutInflater)
         initActionBar(resources.getString(R.string.app_name), false)
-        viewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
         with(binding.listAvailableNow) {
             layoutManager = AvailableNowListLayoutManager(context)
@@ -67,6 +71,19 @@ class DashboardFragment : BaseFragment() {
             getAvailableSeaCreature().observe(viewLifecycleOwner, { data ->
                 availableNowAdapter.swapItem(data, 2)
             })
+            allDailyTask.observe(viewLifecycleOwner) { dailyTasks ->
+                dailyTaskAdapter.submitList(dailyTasks)
+                dailyTaskAdapter.setOnItemClickListener(object :
+                    DailyTaskAdapter.OnItemClickListener {
+                    override fun onItemClick(dailyTask: DailyTask) {
+                        updateDailyTask(dailyTask)
+                    }
+                })
+            }
+        }
+
+        binding.buttonReset.setOnClickListener {
+            viewModel.resetCurrentValue()
         }
 
         return binding.root

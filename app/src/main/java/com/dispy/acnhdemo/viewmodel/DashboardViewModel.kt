@@ -1,13 +1,15 @@
 package com.dispy.acnhdemo.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
+import com.dispy.acnhdemo.model.ACNHRepository
 import com.dispy.acnhdemo.model.DateHandler
 import com.dispy.acnhdemo.model.bean.Bug
+import com.dispy.acnhdemo.model.bean.DailyTask
 import com.dispy.acnhdemo.model.bean.Fish
 import com.dispy.acnhdemo.model.bean.SeaCreature
 import com.google.gson.reflect.TypeToken
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Call
@@ -21,7 +23,7 @@ import retrofit2.Response
  * Created by Dispy on 2021/10/02
  * tpps89305@hotmail.com
  */
-class DashboardViewModel : ViewModelBase() {
+class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase() {
 
     private val availableFishes: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>().also {
@@ -40,6 +42,8 @@ class DashboardViewModel : ViewModelBase() {
             loadBugs()
         }
     }
+
+    val allDailyTask: LiveData<List<DailyTask>> = repository.allDailyTask.asLiveData()
 
     fun getAvailableFishes(): LiveData<Int> = availableFishes
 
@@ -119,6 +123,25 @@ class DashboardViewModel : ViewModelBase() {
             }
 
         })
+    }
+
+    fun updateDailyTask(dailyTask: DailyTask) = viewModelScope.launch {
+        repository.update(dailyTask)
+    }
+
+    fun resetCurrentValue() = viewModelScope.launch {
+        repository.resetCurrentValue()
+    }
+
+}
+
+class DashboardViewModelFactory(private val repository: ACNHRepository) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
+            return DashboardViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
 }
