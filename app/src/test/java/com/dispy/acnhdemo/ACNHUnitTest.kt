@@ -21,4 +21,10 @@ class ACNHUnitTest {
         assertEquals(22, DateHandler.getCurrentHour())
         assertEquals(56, DateHandler.getCurrentMinute())
     }
+
+    @Test
+    fun testGetToday() {
+        assertEquals("7/12", DateHandler.getToday())
+    }
+
 }

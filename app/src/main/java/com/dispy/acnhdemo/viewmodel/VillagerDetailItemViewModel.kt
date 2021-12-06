@@ -13,7 +13,7 @@ class VillagerDetailItemViewModel {
     fun getData(villager: Villager) {
         val listDetailItems = ArrayList<TitleContentPair>()
         listDetailItems.add(TitleContentPair("Personality", villager.personality.name))
-        listDetailItems.add(TitleContentPair("Birthday", villager.birthdayString))
+        listDetailItems.add(TitleContentPair("Birthday", villager.birthday))
         listDetailItems.add(TitleContentPair("Like", villager.bubbleColor))
         listDetailItems.add(TitleContentPair("Species", villager.species))
         listDetailItems.add(TitleContentPair("Gender", villager.gender.name))

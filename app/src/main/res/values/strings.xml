@@ -21,4 +21,7 @@
     <string name="bgm">BGM</string>
     <string name="housewares">Housewares</string>
     <string name="wallmounted">Wallmounted</string>
+    <string name="available_now">Available Now</string>
+    <string name="daily_task">Daily Task</string>
+    <string name="today_birthday">Today\'s Birthday</string>
 </resources>

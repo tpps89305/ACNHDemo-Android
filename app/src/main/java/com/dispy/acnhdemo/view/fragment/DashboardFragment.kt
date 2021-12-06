@@ -11,6 +11,7 @@ import com.dispy.acnhdemo.databinding.FragmentDashboardBinding
 import com.dispy.acnhdemo.model.bean.AvailableNowInfo
 import com.dispy.acnhdemo.model.bean.DailyTask
 import com.dispy.acnhdemo.view.adapter.AvailableNowAdapter
+import com.dispy.acnhdemo.view.adapter.BirthdayVillagerAdapter
 import com.dispy.acnhdemo.view.adapter.DailyTaskAdapter
 import com.dispy.acnhdemo.view.layoutmanager.AvailableNowListLayoutManager
 import com.dispy.acnhdemo.view.layoutmanager.DailyTaskListLayoutManager
@@ -26,11 +27,6 @@ class DashboardFragment : BaseFragment() {
     private val availableNowAdapter by lazy {
         val items = arrayOf(
             AvailableNowInfo(
-                R.drawable.icon_bug,
-                "0",
-                resources.getString(R.string.bugs)
-            ),
-            AvailableNowInfo(
                 R.drawable.icon_fish,
                 "0", resources.getString(R.string.fishes)
             ),
@@ -38,11 +34,19 @@ class DashboardFragment : BaseFragment() {
                 R.drawable.icon_sea_creature,
                 "0",
                 resources.getString(R.string.sea_creatures)
+            ),
+            AvailableNowInfo(
+                R.drawable.icon_bug,
+                "0",
+                resources.getString(R.string.bugs)
             )
         )
         AvailableNowAdapter(items)
     }
+
     private val dailyTaskAdapter = DailyTaskAdapter()
+
+    private val birthdayVillagerAdapter = BirthdayVillagerAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,15 +65,20 @@ class DashboardFragment : BaseFragment() {
             adapter = dailyTaskAdapter
         }
 
+        with(binding.listBirthday) {
+            layoutManager = AvailableNowListLayoutManager(context)
+            adapter = birthdayVillagerAdapter
+        }
+
         with(viewModel) {
             getAvailableBugs().observe(viewLifecycleOwner, { data ->
-                availableNowAdapter.swapItem(data, 0)
+                availableNowAdapter.swapItem(data, 2)
             })
             getAvailableFishes().observe(viewLifecycleOwner, { data ->
-                availableNowAdapter.swapItem(data, 1)
+                availableNowAdapter.swapItem(data, 0)
             })
             getAvailableSeaCreature().observe(viewLifecycleOwner, { data ->
-                availableNowAdapter.swapItem(data, 2)
+                availableNowAdapter.swapItem(data, 1)
             })
             allDailyTask.observe(viewLifecycleOwner) { dailyTasks ->
                 dailyTaskAdapter.submitList(dailyTasks)
@@ -80,6 +89,9 @@ class DashboardFragment : BaseFragment() {
                     }
                 })
             }
+            getBirthdayVillager().observe(viewLifecycleOwner, { data ->
+                birthdayVillagerAdapter.submitList(data)
+            })
         }
 
         binding.buttonReset.setOnClickListener {

@@ -27,5 +27,10 @@ class DateHandler {
             val sdf = SimpleDateFormat("mm", Locale.TAIWAN)
             return sdf.format(Date()).toInt()
         }
+
+        fun getToday(): String {
+            val sdf = SimpleDateFormat("d/M", Locale.TAIWAN)
+            return sdf.format(Date()).toString()
+        }
     }
 }

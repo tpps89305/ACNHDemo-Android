@@ -16,7 +16,7 @@ import com.dispy.acnhdemo.model.bean.AvailableNowInfo
 class AvailableNowAdapter(private val values: Array<AvailableNowInfo>) :
     RecyclerView.Adapter<AvailableNowAdapter.ViewHolder>() {
 
-    private lateinit var listener: CatalogItemAdapter.OnItemClickListener
+    private var listener: CatalogItemAdapter.OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -32,7 +32,7 @@ class AvailableNowAdapter(private val values: Array<AvailableNowInfo>) :
         val item = values[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-            listener.onItemClick(position)
+            listener?.onItemClick(position)
         }
     }
 
