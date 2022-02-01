@@ -27,4 +27,12 @@ object BindingHandler {
     fun bindingAvailableTimes(timeScaleView: TimeScaleView, array: List<Int>) {
         timeScaleView.setAvailableTimes(array)
     }
+
+    @BindingAdapter("resourceString")
+    @JvmStatic
+    fun bindingResourceString(imageView: ImageView, resourceName: String) {
+        imageView.setImageResource(
+            ResourceHandler.getResourceId(context = imageView.context, resourceName = resourceName))
+    }
+
 }

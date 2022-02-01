@@ -98,6 +98,13 @@ class DashboardFragment : BaseFragment() {
             viewModel.resetCurrentValue()
         }
 
+        binding.buttonDetail.setOnClickListener {
+            val dailyTaskDetailFragment = DailyTaskDetailFragment()
+            activity?.supportFragmentManager?.let { it1 ->
+                dailyTaskDetailFragment.show(it1, "DailyTaskDetail")
+            }
+        }
+
         return binding.root
     }
 

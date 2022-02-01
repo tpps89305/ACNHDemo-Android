@@ -188,14 +188,3 @@ class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase
     }
 
 }
-
-class DashboardViewModelFactory(private val repository: ACNHRepository) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
-            return DashboardViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-
-}
