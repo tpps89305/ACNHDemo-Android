@@ -3,6 +3,7 @@ package com.dispy.acnhdemo.model
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.dispy.acnhdemo.view.custom.TimeScaleView
 
@@ -31,8 +32,14 @@ object BindingHandler {
     @BindingAdapter("resourceString")
     @JvmStatic
     fun bindingResourceString(imageView: ImageView, resourceName: String) {
-        imageView.setImageResource(
-            ResourceHandler.getResourceId(context = imageView.context, resourceName = resourceName))
+        imageView.load(
+            ResourceHandler.getResourceId(
+                context = imageView.context,
+                resourceName = resourceName
+            )
+        ) {
+            transformations(CircleCropTransformation())
+        }
     }
 
 }

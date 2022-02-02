@@ -10,4 +10,7 @@
     <color name="detail_square_background">#fff5ad</color>
     <color name="primary_green">#44A886</color>
     <color name="primary_dark_green">#2F755D</color>
+    <color name="daily_progress_bar_background">#FFD4C4</color>
+    <color name="daily_icon_background">#FFF1F2</color>
+    <color name="primary_text_color">#212121</color>
 </resources>

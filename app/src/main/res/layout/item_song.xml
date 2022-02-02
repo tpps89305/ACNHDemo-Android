@@ -7,12 +7,6 @@
         <variable
             name="song"
             type="com.dispy.acnhdemo.model.bean.Song" />
-        <variable
-            name="sourceInfo"
-            type="String" />
-        <variable
-            name="priceInfo"
-            type="String" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -51,34 +45,38 @@
 
             <TextView
                 android:id="@+id/textSongName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@{song.name.nameTWzh}"
+                android:textColor="@color/primary_text_color"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline8"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageSong"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6"
                 tools:text="AAAAA" />
 
-            <TextView
-                android:id="@+id/textSongSource"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{sourceInfo}"
-                app:layout_constraintBottom_toTopOf="@+id/textSongPriceInfo"
-                app:layout_constraintStart_toStartOf="@+id/textSongName"
-                app:layout_constraintTop_toBottomOf="@+id/textSongName"
-                tools:text="BBBBB" />
-
-            <TextView
-                android:id="@+id/textSongPriceInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:text="@{priceInfo}"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listSongTag"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textSongSource"
-                tools:text="CCCCC" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageSong"
+                app:layout_constraintTop_toTopOf="@+id/guideline8"
+                app:layout_constraintVertical_bias="0.4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

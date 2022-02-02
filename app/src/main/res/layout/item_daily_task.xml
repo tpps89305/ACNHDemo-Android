@@ -14,6 +14,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/daily_icon_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resourceString="@{dailyTask.imageName}"
+            tools:srcCompat="@drawable/icon_akoyagai" />
+
         <ProgressBar
             android:id="@+id/progressDaily"
             style="?android:attr/progressBarStyleHorizontal"
@@ -31,17 +43,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:progress="50" />
-
-        <ImageView
-            android:id="@+id/imageIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:resourceString="@{dailyTask.imageName}"
-            tools:srcCompat="@drawable/icon_akoyagai" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
