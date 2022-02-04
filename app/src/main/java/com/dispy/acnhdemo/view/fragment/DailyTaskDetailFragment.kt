@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.ACNHApplication
-import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentDailyTaskDetailBinding
 import com.dispy.acnhdemo.model.bean.DailyTask
-import com.dispy.acnhdemo.view.adapter.DailyTaskAdapter
 import com.dispy.acnhdemo.view.adapter.DailyTaskDetailAdapter
 import com.dispy.acnhdemo.viewmodel.DailyTaskDetailViewModel
 import com.dispy.acnhdemo.viewmodel.DashboardViewModelFactory
@@ -46,7 +44,10 @@ class DailyTaskDetailFragment : BottomSheetDialogFragment() {
                 dailyTaskDetailAdapter.setOnItemClickListener(object :
                 DailyTaskDetailAdapter.OnItemClickListener {
                     override fun onItemClick(dailyTask: DailyTask) {
-                        // TODO: Go to Daily task edit
+                        val dailyTaskEditFragment = DailyTaskEditFragment.newInstance(dailyTask.uid!!)
+                        activity?.supportFragmentManager?.let { it1 ->
+                            dailyTaskEditFragment.show(it1, "DailyTaskEditFragment")
+                        }
                     }
                 })
             }

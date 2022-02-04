@@ -8,12 +8,18 @@ class DashboardViewModelFactory(private val repository: ACNHRepository) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
-            return DashboardViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(DailyTaskDetailViewModel::class.java)) {
-            return DailyTaskDetailViewModel(repository) as T
+        return when {
+            modelClass.isAssignableFrom(DashboardViewModel::class.java) -> {
+                DashboardViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DailyTaskDetailViewModel::class.java) -> {
+                DailyTaskDetailViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DailyTaskEditViewModel::class.java) -> {
+                DailyTaskEditViewModel(repository) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class")
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 
 }

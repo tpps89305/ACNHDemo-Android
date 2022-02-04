@@ -35,13 +35,12 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="4dp"
             android:text="@{dailyTask.name}"
-            android:textColor="@color/primary_text_color"
-            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageDailyTaskIcon"
-            tools:text="Task87" />
+            tools:text="Task87"
+            style="@style/primaryText" />
 
         <ProgressBar
             android:id="@+id/progressBarDailyTask"
@@ -65,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="@{dailyTask.maxValue.toString()}"
-            android:textSize="12sp"
+            android:textColor="@color/primary_text_color"
             app:layout_constraintBottom_toBottomOf="@+id/progressBarDailyTask"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/progressBarDailyTask"

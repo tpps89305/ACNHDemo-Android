@@ -28,7 +28,7 @@ class DailyTaskDetailAdapter(private val dailyTaskItems: ArrayList<DailyTask>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(dailyTaskItems[position])
         holder.itemView.setOnClickListener {
-
+            listener?.onItemClick(dailyTaskItems[position])
         }
     }
 

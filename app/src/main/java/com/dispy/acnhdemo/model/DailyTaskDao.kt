@@ -19,14 +19,17 @@ interface DailyTaskDao {
     @Query("SELECT * FROM dailyTask")
     fun getAll(): Flow<List<DailyTask>>
 
+    @Query("SELECT * FROM dailyTask WHERE uid IS :uid")
+    fun get(uid: Int): Flow<DailyTask>
+
     @Insert
     suspend fun insertAll(vararg dailyTask: DailyTask)
 
     @Query("DELETE FROM dailyTask")
     fun deleteAll()
 
-    @Query("UPDATE dailyTask SET current_value = :currentValue WHERE uid = :uid")
-    suspend fun update(currentValue: Int, uid: Int)
+    @Query("UPDATE dailyTask SET current_value = :currentValue, max_value = :maxValue, name = :name WHERE uid = :uid")
+    suspend fun update(uid: Int, name: String, currentValue: Int, maxValue: Int)
 
     @Query("UPDATE dailyTask SET current_value = 0")
     suspend fun resetCurrentValue()
