@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="dailyTask"
             type="com.dispy.acnhdemo.model.bean.DailyTask" />
@@ -13,31 +14,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imageIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/daily_icon_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resourceString="@{dailyTask.imageName}"
+            tools:srcCompat="@drawable/icon_akoyagai" />
+
         <ProgressBar
             android:id="@+id/progressDaily"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/circle_shape"
             android:max="@{dailyTask.maxValue}"
             android:progress="@{dailyTask.currentValue}"
             android:progressDrawable="@drawable/circular_progress_bar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:progressTint="@color/primary_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pic_akoyagai" />
+            tools:progress="50" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,8 +8,6 @@
     <string name="text_catch_phrase">Catch phrase</string>
     <string name="play">PLAY</string>
     <string name="stop">STOP</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_available_time">Available Time</string>
     <string name="text_bgm_hint">Please select hour and weather</string>
     <string name="songs">Songs</string>
@@ -24,4 +22,9 @@
     <string name="available_now">Available Now</string>
     <string name="daily_task">Daily Task</string>
     <string name="today_birthday">Today\'s Birthday</string>
+    <string name="must_have_task_name">Must have task name</string>
+    <string name="hint">Hint</string>
+    <string name="ok">OK</string>
+    <string name="must_have_current_value">Must have current value</string>
+    <string name="must_have_max_value">Must have max value</string>
 </resources>

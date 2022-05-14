@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dispy.acnhdemo.databinding.ItemSongBinding
+import com.dispy.acnhdemo.model.TagsDecoration
 import com.dispy.acnhdemo.model.bean.Song
 
 class SongsAdapter(
@@ -37,6 +39,14 @@ class SongsAdapter(
         holder.itemView.setOnClickListener {
             listener.onItemClick(holder.itemView, position, item)
         }
+
+        with(holder.listSongTags) {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            adapter = TagsAdapter(parsePriceInfo(item))
+            if (itemDecorationCount == 0)
+                addItemDecoration(TagsDecoration())
+        }
+
     }
 
     override fun getItemCount(): Int = songsFiltered.size
@@ -47,30 +57,24 @@ class SongsAdapter(
         notifyDataSetChanged()
     }
 
+    private fun parsePriceInfo(song: Song): ArrayList<String> {
+        val tags = ArrayList<String>()
+        if (song.buyPrice != null) {
+            tags.add("Buy: ${song.buyPrice}")
+        }
+        tags.add("Sell: ${song.sellPrice}")
+        return tags
+    }
+
     inner class ViewHolder(private val binding: ItemSongBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        lateinit var listSongTags: RecyclerView
+
         fun bind(song: Song) {
             binding.song = song
-            binding.sourceInfo = parseSourceInfo(song)
-            binding.priceInfo = parsePriceInfo(song)
+            listSongTags = binding.listSongTag
             binding.executePendingBindings()
-        }
-
-        private fun parseSourceInfo(song: Song): String {
-            var result = "K.K. concert"
-            if (song.isOrderable) {
-                result += ", Nook Shopping Catalog"
-            }
-            return result
-        }
-
-        private fun parsePriceInfo(song: Song): String {
-            var result = ""
-            if (song.buyPrice != null) {
-                result += "Buy: ${song.buyPrice}, "
-            }
-            result += "Sell: ${song.sellPrice}"
-            return result
         }
 
     }

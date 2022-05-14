@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+        binding.bottomNavigationView.itemIconTintList = null
 
     }
 }

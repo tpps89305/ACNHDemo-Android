@@ -48,6 +48,10 @@ class SongDetailFragment : BaseFragment() {
             }
         }
 
+        if (!viewModel.isSongOrderable()) {
+            binding.viewNook.visibility = View.GONE
+        }
+
         return binding.root
     }
 
