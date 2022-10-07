@@ -13,4 +13,5 @@
     <color name="daily_progress_bar_background">#FFD4C4</color>
     <color name="daily_icon_background">#FFF1F2</color>
     <color name="primary_text_color">#212121</color>
+    <color name="square_background">#CBFFFFFF</color>
 </resources>
