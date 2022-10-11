@@ -24,16 +24,16 @@ class WallmountedFragment : BaseFragment() {
     ): View {
         binding = FragmentWallmountedBinding.inflate(layoutInflater)
         initActionBar("Wallmounted")
-        viewModel = ViewModelProvider(this).get(WallmountedViewModel::class.java)
+        viewModel = ViewModelProvider(this)[WallmountedViewModel::class.java]
 
         with(binding.listWallmounted) {
             layoutManager = LinearLayoutManager(context)
             adapter = wallmountedAdapter
         }
 
-        viewModel.getWallmounteds().observe(viewLifecycleOwner, { data ->
+        viewModel.getWallmounteds().observe(viewLifecycleOwner) { data ->
             wallmountedAdapter.swapItems(data)
-        })
+        }
 
         wallmountedAdapter.setOnItemClickListener(object : CommonAdapter.OnItemClickListener {
             override fun onItemClick(view: View, fileName: String) {

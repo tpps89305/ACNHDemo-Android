@@ -37,9 +37,9 @@ class SongsFragment : BaseFragment() {
         }
 
         with(viewModel) {
-            getSongs().observe(viewLifecycleOwner, { data ->
+            getSongs().observe(viewLifecycleOwner) { data ->
                 songsAdapter.swapItems(data)
-            })
+            }
         }
 
         songsAdapter.setOnItemClickListener(object : SongsAdapter.OnItemClickListener {

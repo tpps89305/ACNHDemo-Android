@@ -30,9 +30,9 @@ class BugsFragment : BaseFragment() {
             adapter = bugsAdapter
         }
 
-        viewModel.getBugs().observe(viewLifecycleOwner, { data ->
+        viewModel.getBugs().observe(viewLifecycleOwner) { data ->
             bugsAdapter.swapItems(data)
-        })
+        }
 
         bugsAdapter.setOnItemClickListener(object :
             CommonAdapter.OnItemClickListener {

@@ -30,9 +30,9 @@ class HousewaresFragment : BaseFragment() {
             adapter = housewaresAdapter
         }
 
-        viewModel.getHousewares().observe(viewLifecycleOwner, { data ->
+        viewModel.getHousewares().observe(viewLifecycleOwner) { data ->
             housewaresAdapter.swapItems(data)
-        })
+        }
 
         housewaresAdapter.setOnItemClickListener(object: CommonAdapter.OnItemClickListener {
             override fun onItemClick(view: View, fileName: String) {

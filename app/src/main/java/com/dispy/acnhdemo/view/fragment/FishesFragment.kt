@@ -25,7 +25,7 @@ class FishesFragment : BaseFragment() {
     ): View {
         binding = FragmentFishesBinding.inflate(layoutInflater)
         initActionBar("Fishes")
-        viewModel = ViewModelProvider(this).get(FishesViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FishesViewModel::class.java]
 
         with(binding.listFishes) {
             layoutManager = when {
@@ -35,9 +35,9 @@ class FishesFragment : BaseFragment() {
             adapter = fishesAdapter
         }
 
-        viewModel.getFishes().observe(viewLifecycleOwner, { data ->
+        viewModel.getFishes().observe(viewLifecycleOwner) { data ->
             fishesAdapter.swapItems(data)
-        })
+        }
 
         fishesAdapter.setOnItemClickListener(object :
             CommonAdapter.OnItemClickListener {

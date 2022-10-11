@@ -31,9 +31,9 @@ class SeaCreaturesFragment : BaseFragment() {
             adapter = seaCreaturesAdapter
         }
 
-        viewModel.getSeaCreatures().observe(viewLifecycleOwner, { data ->
+        viewModel.getSeaCreatures().observe(viewLifecycleOwner) { data ->
             seaCreaturesAdapter.swapItems(data)
-        })
+        }
 
         seaCreaturesAdapter.setOnItemClickListener(object :
         CommonAdapter.OnItemClickListener {

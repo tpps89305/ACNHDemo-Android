@@ -71,15 +71,15 @@ class DashboardFragment : BaseFragment() {
         }
 
         with(viewModel) {
-            getAvailableBugs().observe(viewLifecycleOwner, { data ->
+            getAvailableBugs().observe(viewLifecycleOwner) { data ->
                 availableNowAdapter.swapItem(data, 2)
-            })
-            getAvailableFishes().observe(viewLifecycleOwner, { data ->
+            }
+            getAvailableFishes().observe(viewLifecycleOwner) { data ->
                 availableNowAdapter.swapItem(data, 0)
-            })
-            getAvailableSeaCreature().observe(viewLifecycleOwner, { data ->
+            }
+            getAvailableSeaCreature().observe(viewLifecycleOwner) { data ->
                 availableNowAdapter.swapItem(data, 1)
-            })
+            }
             allDailyTask.observe(viewLifecycleOwner) { dailyTasks ->
                 dailyTaskAdapter.submitList(dailyTasks)
                 dailyTaskAdapter.setOnItemClickListener(object :
@@ -89,9 +89,9 @@ class DashboardFragment : BaseFragment() {
                     }
                 })
             }
-            getBirthdayVillager().observe(viewLifecycleOwner, { data ->
+            getBirthdayVillager().observe(viewLifecycleOwner) { data ->
                 birthdayVillagerAdapter.submitList(data)
-            })
+            }
         }
 
         binding.buttonReset.setOnClickListener {

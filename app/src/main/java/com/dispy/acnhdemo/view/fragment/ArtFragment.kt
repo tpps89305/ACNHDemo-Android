@@ -31,9 +31,9 @@ class ArtFragment : BaseFragment() {
             adapter = artAdapter
         }
 
-        viewModel.getArt().observe(viewLifecycleOwner, { data ->
+        viewModel.getArt().observe(viewLifecycleOwner) { data ->
             artAdapter.swapItems(data)
-        })
+        }
 
         return binding.root
     }

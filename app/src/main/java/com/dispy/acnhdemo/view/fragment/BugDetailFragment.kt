@@ -27,7 +27,7 @@ class BugDetailFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentBugDetailBinding.inflate(layoutInflater)
         initActionBar(args.bug.name.nameTWzh)
 
@@ -41,9 +41,9 @@ class BugDetailFragment : BaseFragment() {
 
         with(viewModel) {
             parseData(args.bug)
-            getBugInfo().observe(viewLifecycleOwner, { data ->
+            getBugInfo().observe(viewLifecycleOwner) { data ->
                 detailAdapter.swapItems(data)
-            })
+            }
         }
 
         availableMonthAdapter = AvailableMonthAdapter(

@@ -26,7 +26,7 @@ class HousewareDetailFragment : BaseFragment() {
     ): View {
         binding = FragmentHousewareDetailBinding.inflate(layoutInflater)
         initActionBar(args.houseware.name.nameTWzh)
-        viewModel = ViewModelProvider(this).get(HousewareDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this)[HousewareDetailViewModel::class.java]
         commonAdapter = CommonDetailAdapter(
             args.houseware.imageURI,
             viewModel.getDetailInfo(args.houseware)

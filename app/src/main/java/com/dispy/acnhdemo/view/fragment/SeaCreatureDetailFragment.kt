@@ -42,9 +42,9 @@ class SeaCreatureDetailFragment : BaseFragment() {
 
         with(viewModel) {
             parseData(args.seaCreature)
-            getSeaCreatureInfo().observe(viewLifecycleOwner, { data ->
+            getSeaCreatureInfo().observe(viewLifecycleOwner) { data ->
                 detailAdapter.swapItems(data)
-            })
+            }
         }
 
         availableMonthAdapter = AvailableMonthAdapter(

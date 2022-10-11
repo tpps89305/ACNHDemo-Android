@@ -26,7 +26,7 @@ class WallmountedDetailFragment : BaseFragment() {
     ): View {
         binding = FragmentWallmountedDetailBinding.inflate(layoutInflater)
         initActionBar(args.wallmounted.name.nameTWzh)
-        viewModel = ViewModelProvider(this).get(WallmountedDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this)[WallmountedDetailViewModel::class.java]
         commonDetailAdapter = CommonDetailAdapter(
             args.wallmounted.imageURI,
             viewModel.getDetailInfo(args.wallmounted)

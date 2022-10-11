@@ -45,14 +45,14 @@ class VillagersFragment : BaseFragment() {
 
         binding.progressLoading.visibility = View.VISIBLE
         with(viewModel) {
-            getVillagers().observe(viewLifecycleOwner, { data ->
+            getVillagers().observe(viewLifecycleOwner) { data ->
                 binding.progressLoading.visibility = View.GONE
                 if (data.isNotEmpty()) {
                     villagerAdapter.swapItems(data)
                 } else {
                     binding.groupNoResult.visibility = View.VISIBLE
                 }
-            })
+            }
         }
 
         villagerAdapter.setOnItemClickListener(object :

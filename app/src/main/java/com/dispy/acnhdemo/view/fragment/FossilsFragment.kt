@@ -23,16 +23,16 @@ class FossilsFragment : BaseFragment() {
     ): View {
         binding = FragmentFossilsBinding.inflate(layoutInflater)
         initActionBar("Fossils")
-        viewModel = ViewModelProvider(this).get(FossilsViewModel::class.java)
+        viewModel = ViewModelProvider(this)[FossilsViewModel::class.java]
 
         with(binding.listFossils) {
             layoutManager = LinearLayoutManager(context)
             adapter = fossilsAdapter
         }
 
-        viewModel.getFossils().observe(viewLifecycleOwner, { data ->
+        viewModel.getFossils().observe(viewLifecycleOwner) { data ->
             fossilsAdapter.swapItems(data)
-        })
+        }
 
         return binding.root
     }

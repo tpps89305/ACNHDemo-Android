@@ -28,9 +28,9 @@ class BGMFragment : BaseFragment() {
         initActionBar("BGM")
         initMusicPlayer()
         binding.buttonPlay.isEnabled = false
-        viewModel.getBGMValue().observe(viewLifecycleOwner, { data ->
+        viewModel.getBGMValue().observe(viewLifecycleOwner) { data ->
             binding.buttonPlay.isEnabled = true
-        })
+        }
 
         val arrayHours = resources.getStringArray(R.array.array_hours)
         with(binding.pickerHour) {

@@ -39,9 +39,9 @@ class VillagerDetailFragment : BaseFragment() {
 
         with(viewModel) {
             getData(args.villager)
-            getItems().observe(viewLifecycleOwner, { data ->
+            getItems().observe(viewLifecycleOwner) { data ->
                 detailAdapter.swapItems(data)
-            })
+            }
             detailAdapter.swapImageUrl(args.villager.imageURI)
             detailAdapter.swapTextColor(Color.parseColor(args.villager.textColor))
         }

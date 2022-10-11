@@ -42,9 +42,9 @@ class FishDetailFragment : BaseFragment() {
 
         with(viewModel) {
             parseData(args.fish)
-            getFishInfo().observe(viewLifecycleOwner, { data ->
+            getFishInfo().observe(viewLifecycleOwner) { data ->
                 detailAdapter.swapItems(data)
-            })
+            }
         }
 
         availableMonthAdapter = AvailableMonthAdapter(args.fish.availability.monthArrayNorthern,
