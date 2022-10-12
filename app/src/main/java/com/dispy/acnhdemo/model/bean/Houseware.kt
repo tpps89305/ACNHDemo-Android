@@ -10,6 +10,9 @@ import java.io.Serializable
  * Created by Dispy on 2021/09/25
  * tpps89305@hotmail.com
  */
+
+typealias HousewaresMap = HashMap<String, List<Houseware>>
+
 data class Houseware (
     val variant: String? = null,
 

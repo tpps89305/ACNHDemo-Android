@@ -1,9 +1,6 @@
 package com.dispy.acnhdemo.model
 
-import com.dispy.acnhdemo.model.bean.BugsMap
-import com.dispy.acnhdemo.model.bean.FishesMap
-import com.dispy.acnhdemo.model.bean.SeaCreaturesMap
-import com.dispy.acnhdemo.model.bean.SongsMap
+import com.dispy.acnhdemo.model.bean.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
@@ -33,21 +30,21 @@ interface ACNHService {
 
     @Headers("Content-Type: application/json")
     @GET("fossils")
-    fun getFossils(): Call<ResponseBody>
+    fun getFossils(): Call<FossilsMap>
 
     @Headers("Content-Type: application/json")
     @GET("art")
-    fun getArt(): Call<ResponseBody>
+    fun getArt(): Call<ArtMap>
 
     @Headers("Content-Type: application/json")
     @GET("backgroundmusic")
-    fun getBGM(): Call<ResponseBody>
+    fun getBGM(): Call<BGMsMap>
 
     @Headers("Content-Type: application/json")
     @GET("houseware")
-    fun getHouseware(): Call<ResponseBody>
+    fun getHouseware(): Call<HousewaresMap>
 
     @Headers("Content-Type: application/json")
     @GET("wallmounted")
-    fun getWallmounted(): Call<ResponseBody>
+    fun getWallmounted(): Call<WallmountedsMap>
 }

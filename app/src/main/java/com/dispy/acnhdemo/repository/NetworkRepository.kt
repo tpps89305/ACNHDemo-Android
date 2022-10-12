@@ -115,4 +115,104 @@ class NetworkRepository {
 
         })
     }
+
+    fun fetchFossils(listener: ResponseListener<List<Fossil>>) {
+        val call: Call<FossilsMap> = acnhService.getFossils()
+        call.enqueue(object : Callback<FossilsMap> {
+            override fun onResponse(call: Call<FossilsMap>, response: Response<FossilsMap>) {
+                val data = response.body()!!
+                val listFossils = ArrayList<Fossil>()
+                for (eachKey in data.keys) {
+                    listFossils.add(data[eachKey]!!)
+                }
+                listener.onResponse(listFossils)
+                Log.i("NetworkRepository", "Got ${listFossils.size} fossils")
+            }
+
+            override fun onFailure(call: Call<FossilsMap>, t: Throwable) {
+                Log.w("NetworkRepository", "Cannot get fossils", t)
+            }
+
+        })
+    }
+
+    fun fetchArt(listener: ResponseListener<List<Art>>) {
+        val call: Call<ArtMap> = acnhService.getArt()
+        call.enqueue(object : Callback<ArtMap> {
+            override fun onResponse(call: Call<ArtMap>, response: Response<ArtMap>) {
+                val data = response.body()!!
+                val listArt = ArrayList<Art>()
+                for (eachKey in data.keys) {
+                    listArt.add(data[eachKey]!!)
+                }
+                listener.onResponse(listArt)
+                Log.i("NetworkRepository", "Got ${listArt.size} art")
+            }
+
+            override fun onFailure(call: Call<ArtMap>, t: Throwable) {
+                Log.w("NetworkRepository", "Cannot get art", t)
+            }
+
+        })
+    }
+
+    fun fetchBGMs(listener: ResponseListener<List<BGM>>) {
+        val call: Call<BGMsMap> = acnhService.getBGM()
+        call.enqueue(object : Callback<BGMsMap> {
+            override fun onResponse(call: Call<BGMsMap>, response: Response<BGMsMap>) {
+                val data = response.body()!!
+                val listBGM = ArrayList<BGM>()
+                for (eachKey in data.keys) {
+                    listBGM.add(data[eachKey]!!)
+                }
+                listener.onResponse(listBGM)
+                Log.i("NetworkRepository", "Got ${listBGM.size} BGMs")
+            }
+
+            override fun onFailure(call: Call<BGMsMap>, t: Throwable) {
+                Log.w("NetworkRepository", "Cannot get BGMs", t)
+            }
+
+        })
+    }
+
+    fun fetchHousewares(listener: ResponseListener<List<Houseware>>) {
+        val call: Call<HousewaresMap> = acnhService.getHouseware()
+        call.enqueue(object : Callback<HousewaresMap> {
+            override fun onResponse(call: Call<HousewaresMap>, response: Response<HousewaresMap>) {
+                val data = response.body()!!
+                val listHousewares = ArrayList<Houseware>()
+                for (eachKey in data.keys) {
+                    listHousewares.add(data[eachKey]!![0])
+                }
+                listener.onResponse(listHousewares)
+                Log.i("NetworkRepository", "Got ${listHousewares.size} housewares")
+            }
+
+            override fun onFailure(call: Call<HousewaresMap>, t: Throwable) {
+                Log.w("NetworkRepository", "Cannot get housewares", t)
+            }
+
+        })
+    }
+
+    fun fetchWallmounteds(listener: ResponseListener<List<Wallmounted>>) {
+        val call: Call<WallmountedsMap> = acnhService.getWallmounted()
+        call.enqueue(object : Callback<WallmountedsMap> {
+            override fun onResponse(call: Call<WallmountedsMap>, response: Response<WallmountedsMap>) {
+                val data = response.body()!!
+                val listWallmounted = ArrayList<Wallmounted>()
+                for (eachKey in data.keys) {
+                    listWallmounted.add(data[eachKey]!![0])
+                }
+                listener.onResponse(listWallmounted)
+                Log.i("NetworkRepository", "Got ${listWallmounted.size} wallmounted")
+            }
+
+            override fun onFailure(call: Call<WallmountedsMap>, t: Throwable) {
+                Log.w("NetworkRepository", "Cannot get wallmounted", t)
+            }
+
+        })
+    }
 }

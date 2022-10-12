@@ -11,6 +11,8 @@ import java.io.Serializable
  * tpps89305@hotmail.com
  */
 
+typealias BGMsMap = HashMap<String, BGM>
+
 data class BGM (
     val id: Long,
 

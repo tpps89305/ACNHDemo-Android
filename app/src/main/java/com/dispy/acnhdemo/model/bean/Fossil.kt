@@ -10,6 +10,9 @@ import java.io.Serializable
  * Created by Dispy on 2021/09/14
  * tpps89305@hotmail.com
  */
+
+typealias FossilsMap = HashMap<String, Fossil>
+
 data class Fossil (
     @SerializedName("file-name")
     val fileName: String,

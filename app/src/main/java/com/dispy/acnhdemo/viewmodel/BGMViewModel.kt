@@ -1,15 +1,10 @@
 package com.dispy.acnhdemo.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.BGM
-import com.google.gson.reflect.TypeToken
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.dispy.acnhdemo.repository.NetworkRepository
 
 /**
  * ACNH Demo
@@ -18,7 +13,7 @@ import retrofit2.Response
  * Created by Dispy on 2021/09/25
  * tpps89305@hotmail.com
  */
-class BGMViewModel : ViewModelBase()  {
+class BGMViewModel : ViewModel()  {
 
     private val bgmValue: MutableLiveData<List<BGM>> by lazy {
         MutableLiveData<List<BGM>>().also {
@@ -29,22 +24,10 @@ class BGMViewModel : ViewModelBase()  {
     fun getBGMValue(): LiveData<List<BGM>> = bgmValue
 
     private fun loadData() {
-        val call: Call<ResponseBody> = acnhService.getBGM()
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()!!.string()
-                val listBGM = ArrayList<BGM>()
-                val jsonBGM = JSONObject(data)
-                for (eachKey in jsonBGM.keys()) {
-                    val eachObject = jsonBGM.optJSONObject(eachKey)!!
-                    listBGM.add(gson.fromJson(eachObject.toString(), object : TypeToken<BGM>() {}.type))
-                }
-                bgmValue.value = listBGM
-                Log.i("BGMs", "Get BGMs success")
-            }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("BGMs", "Error when get BGMs", t)
+        val repository = NetworkRepository()
+        repository.fetchBGMs(object : NetworkRepository.ResponseListener<List<BGM>>{
+            override fun onResponse(response: List<BGM>) {
+                bgmValue.value = response
             }
 
         })

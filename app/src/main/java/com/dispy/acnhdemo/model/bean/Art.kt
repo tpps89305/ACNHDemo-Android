@@ -10,6 +10,9 @@ import java.io.Serializable
  * Created by Dispy on 2021/09/15
  * tpps89305@hotmail.com
  */
+
+typealias ArtMap = HashMap<String, Art>
+
 data class Art (
     val id: Long,
 

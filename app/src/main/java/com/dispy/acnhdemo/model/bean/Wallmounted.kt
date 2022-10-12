@@ -11,6 +11,8 @@ import java.io.Serializable
  * tpps89305@hotmail.com
  */
 
+typealias WallmountedsMap = HashMap<String, List<Wallmounted>>
+
 data class Wallmounted (
     val variant: String? = null,
 
