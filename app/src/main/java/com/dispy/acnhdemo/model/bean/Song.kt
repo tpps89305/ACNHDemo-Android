@@ -8,7 +8,7 @@ import java.io.Serializable
 // val json = Json(JsonConfiguration.Stable)
 // val song = json.parse(Song.serializer(), jsonString)
 
-typealias Songs = HashMap<String, Song>
+typealias SongsMap = HashMap<String, Song>
 
 data class Song (
     val id: Long,

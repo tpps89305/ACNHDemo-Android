@@ -1,7 +1,7 @@
 package com.dispy.acnhdemo
 
 import android.app.Application
-import com.dispy.acnhdemo.model.ACNHRepository
+import com.dispy.acnhdemo.repository.DatabaseRepository
 import com.dispy.acnhdemo.model.AppDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -16,5 +16,5 @@ import kotlinx.coroutines.SupervisorJob
 class ACNHApplication: Application() {
     val applicationScope = CoroutineScope(SupervisorJob())
     val database by lazy { AppDatabase.getDatabase(this, applicationScope) }
-    val repository by lazy { ACNHRepository(database.dailyTaskDao()) }
+    val repository by lazy { DatabaseRepository(database.dailyTaskDao()) }
 }

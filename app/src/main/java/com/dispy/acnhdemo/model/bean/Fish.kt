@@ -8,7 +8,7 @@ package com.dispy.acnhdemo.model.bean
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-typealias Fishes = HashMap<String, Fish>
+typealias FishesMap = HashMap<String, Fish>
 
 data class Fish (
     val id: Long,

@@ -1,6 +1,7 @@
-package com.dispy.acnhdemo.model
+package com.dispy.acnhdemo.repository
 
 import androidx.annotation.WorkerThread
+import com.dispy.acnhdemo.model.DailyTaskDao
 import com.dispy.acnhdemo.model.bean.DailyTask
 import kotlinx.coroutines.flow.Flow
 
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
  * Created by Dispy on 2021/11/28
  * tpps89305@hotmail.com
  */
-class ACNHRepository(private val dao: DailyTaskDao) {
+class DatabaseRepository(private val dao: DailyTaskDao) {
 
     val allDailyTask: Flow<List<DailyTask>> = dao.getAll()
 

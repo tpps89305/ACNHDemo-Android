@@ -1,17 +1,12 @@
 package com.dispy.acnhdemo.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.Bug
-import com.google.gson.reflect.TypeToken
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.dispy.acnhdemo.repository.NetworkRepository
 
-class BugsViewModel : ViewModelBase() {
+class BugsViewModel : ViewModel() {
 
     private val bugs: MutableLiveData<List<Bug>> by lazy {
         MutableLiveData<List<Bug>>().also {
@@ -29,24 +24,11 @@ class BugsViewModel : ViewModelBase() {
     }
 
     private fun loadData() {
-        val call: Call<ResponseBody> = acnhService.getBugs()
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()!!.string()
-                val listBug = ArrayList<Bug>()
-                val jsonBugs = JSONObject(data)
-                for (eachKey in jsonBugs.keys()) {
-                    val eachObject = jsonBugs.optJSONObject(eachKey)!!
-                    listBug.add(gson.fromJson(eachObject.toString(), object : TypeToken<Bug>() {}.type))
-                }
-                bugs.value = listBug
-                Log.i("Bugs", "Get bugs success")
+        val repository = NetworkRepository()
+        repository.fetchBugs(object : NetworkRepository.ResponseListener<List<Bug>> {
+            override fun onResponse(response: List<Bug>) {
+                bugs.value = response
             }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("Bugs", "Error when get bugs", t)
-            }
-
         })
     }
 

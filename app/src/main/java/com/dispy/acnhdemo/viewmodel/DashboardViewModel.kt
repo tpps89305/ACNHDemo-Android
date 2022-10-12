@@ -2,9 +2,10 @@ package com.dispy.acnhdemo.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.dispy.acnhdemo.model.ACNHRepository
+import com.dispy.acnhdemo.repository.DatabaseRepository
 import com.dispy.acnhdemo.model.DateHandler
 import com.dispy.acnhdemo.model.bean.*
+import com.dispy.acnhdemo.repository.NetworkRepository
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
@@ -20,7 +21,7 @@ import retrofit2.Response
  * Created by Dispy on 2021/10/02
  * tpps89305@hotmail.com
  */
-class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase() {
+class DashboardViewModel(private val repository: DatabaseRepository) : ViewModelBase() {
 
     private val availableFishes: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>().also {
@@ -56,20 +57,14 @@ class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase
 
     fun getBirthdayVillager(): LiveData<ArrayList<Villager>> = birthdayVillagers
 
+    private val networkRepository = NetworkRepository()
+
     private fun loadBugs() {
         val currentMonth = DateHandler.getCurrentMonth()
         val currentHour = DateHandler.getCurrentHour()
-        val call: Call<ResponseBody> = acnhService.getBugs()
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()!!.string()
-                var listBug = ArrayList<Bug>()
-                val jsonBugs = JSONObject(data)
-                for (eachKey in jsonBugs.keys()) {
-                    val eachObject = jsonBugs.optJSONObject(eachKey)!!
-                    listBug.add(gson.fromJson(eachObject.toString(), object : TypeToken<Bug>() {}.type))
-                }
-                listBug = listBug.filter {
+        networkRepository.fetchBugs(object : NetworkRepository.ResponseListener<List<Bug>> {
+            override fun onResponse(response: List<Bug>) {
+                val listBug = response.filter {
                     if (it.availability.monthArrayNorthern.contains(currentMonth) || it.availability.isAllYear) {
                         it.availability.timeArray.contains(currentHour) || it.availability.isAllDay
                     } else {
@@ -77,30 +72,16 @@ class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase
                     }
                 } as ArrayList<Bug>
                 availableBugs.value = listBug.size
-                Log.i("Bugs", "Get available bugs success: ${listBug.size}")
             }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("Bugs", "Error when get bugs", t)
-            }
-
         })
     }
 
     private fun loadFishes() {
         val currentMonth = DateHandler.getCurrentMonth()
         val currentHour = DateHandler.getCurrentHour()
-        val call: Call<ResponseBody> = acnhService.getFishes()
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()!!.string()
-                var listFish = ArrayList<Fish>()
-                val jsonFishes = JSONObject(data)
-                for (eachKey in jsonFishes.keys()) {
-                    val eachObject = jsonFishes.optJSONObject(eachKey)!!
-                    listFish.add(gson.fromJson(eachObject.toString(), object : TypeToken<Fish>() {}.type))
-                }
-                listFish = listFish.filter {
+        networkRepository.fetchFishes(object : NetworkRepository.ResponseListener<List<Fish>>{
+            override fun onResponse(response: List<Fish>) {
+                val listFish = response.filter {
                     if (it.availability.monthArrayNorthern.contains(currentMonth) || it.availability.isAllYear) {
                         it.availability.timeArray.contains(currentHour) || it.availability.isAllDay
                     } else {
@@ -108,30 +89,16 @@ class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase
                     }
                 } as ArrayList<Fish>
                 availableFishes.value = listFish.size
-                Log.i("Fishes", "Get available fishes success: ${listFish.size}")
             }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("Fishes", "Error when get fishes", t)
-            }
-
         })
     }
 
     private fun loadSeaCreatures() {
         val currentMonth = DateHandler.getCurrentMonth()
         val currentHour = DateHandler.getCurrentHour()
-        val call: Call<ResponseBody> = acnhService.getSeaCreatures()
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()!!.string()
-                var listSeaCreature = ArrayList<SeaCreature>()
-                val jsonSeaCreature = JSONObject(data)
-                for (eachKey in jsonSeaCreature.keys()) {
-                    val eachObject = jsonSeaCreature.optJSONObject(eachKey)!!
-                    listSeaCreature.add(gson.fromJson(eachObject.toString(), object : TypeToken<SeaCreature>() {}.type))
-                }
-                listSeaCreature = listSeaCreature.filter {
+        networkRepository.fetchSeaCreatures(object : NetworkRepository.ResponseListener<List<SeaCreature>> {
+            override fun onResponse(response: List<SeaCreature>) {
+                val listSeaCreature = response.filter {
                     if (it.availability.monthArrayNorthern.contains(currentMonth) || it.availability.isAllYear) {
                         it.availability.timeArray.contains(currentHour) || it.availability.isAllDay
                     } else {
@@ -139,13 +106,7 @@ class DashboardViewModel(private val repository: ACNHRepository) : ViewModelBase
                     }
                 } as ArrayList<SeaCreature>
                 availableSeaCreature.value = listSeaCreature.size
-                Log.i("SeaCreature", "Get available sea creatures success: ${listSeaCreature.size}")
             }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("SeaCreature", "Error when get sea creatures", t)
-            }
-
         })
     }
 

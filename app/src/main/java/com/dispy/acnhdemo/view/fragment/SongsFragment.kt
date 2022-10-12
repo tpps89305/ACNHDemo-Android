@@ -10,7 +10,7 @@ import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentSongsBinding
 import com.dispy.acnhdemo.model.bean.Song
 import com.dispy.acnhdemo.view.adapter.SongsAdapter
-import com.dispy.acnhdemo.viewmodel.SongsFragmentViewModel
+import com.dispy.acnhdemo.viewmodel.SongsViewModel
 
 /**
  * A fragment representing a list of Items.
@@ -19,7 +19,7 @@ class SongsFragment : BaseFragment() {
 
     private var columnCount = 1
     private val songsAdapter = SongsAdapter(ArrayList())
-    private val viewModel = SongsFragmentViewModel()
+    private val viewModel = SongsViewModel()
     private lateinit var binding: FragmentSongsBinding
 
     override fun onCreateView(

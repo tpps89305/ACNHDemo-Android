@@ -11,6 +11,8 @@ import java.io.Serializable
  * tpps89305@hotmail.com
  */
 
+typealias SeaCreaturesMap = HashMap<String, SeaCreature>
+
 data class SeaCreature (
     val id: Long,
 

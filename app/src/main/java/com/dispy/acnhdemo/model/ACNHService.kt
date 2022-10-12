@@ -1,5 +1,9 @@
 package com.dispy.acnhdemo.model
 
+import com.dispy.acnhdemo.model.bean.BugsMap
+import com.dispy.acnhdemo.model.bean.FishesMap
+import com.dispy.acnhdemo.model.bean.SeaCreaturesMap
+import com.dispy.acnhdemo.model.bean.SongsMap
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.GET
@@ -13,19 +17,19 @@ interface ACNHService {
 
     @Headers("Content-Type: application/json")
     @GET("songs")
-    fun getSongs(): Call<ResponseBody>
+    fun getSongs(): Call<SongsMap>
 
     @Headers("Content-Type: application/json")
     @GET("fish")
-    fun getFishes(): Call<ResponseBody>
+    fun getFishes(): Call<FishesMap>
 
     @Headers("Content-Type: application/json")
     @GET("sea")
-    fun getSeaCreatures(): Call<ResponseBody>
+    fun getSeaCreatures(): Call<SeaCreaturesMap>
 
     @Headers("Content-Type: application/json")
     @GET("bugs")
-    fun getBugs(): Call<ResponseBody>
+    fun getBugs(): Call<BugsMap>
 
     @Headers("Content-Type: application/json")
     @GET("fossils")

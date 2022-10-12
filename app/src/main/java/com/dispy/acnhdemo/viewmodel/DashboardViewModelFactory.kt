@@ -2,9 +2,9 @@ package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dispy.acnhdemo.model.ACNHRepository
+import com.dispy.acnhdemo.repository.DatabaseRepository
 
-class DashboardViewModelFactory(private val repository: ACNHRepository) :
+class DashboardViewModelFactory(private val repository: DatabaseRepository) :
     ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -3,7 +3,7 @@ package com.dispy.acnhdemo.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.dispy.acnhdemo.model.ACNHRepository
+import com.dispy.acnhdemo.repository.DatabaseRepository
 import com.dispy.acnhdemo.model.bean.DailyTask
 import kotlinx.coroutines.launch
 
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
  * @author yangchaofu
  * @since 2022/2/4
  */
-class DailyTaskEditViewModel(private val repository: ACNHRepository) : ViewModelBase() {
+class DailyTaskEditViewModel(private val repository: DatabaseRepository) : ViewModelBase() {
 
     fun getDailyTask(uid: Int): LiveData<DailyTask> {
         return repository.getDailyTask(uid).asLiveData()

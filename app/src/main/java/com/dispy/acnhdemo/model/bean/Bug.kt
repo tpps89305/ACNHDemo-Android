@@ -11,6 +11,8 @@ import java.io.Serializable
  * tpps89305@hotmail.com
  */
 
+typealias BugsMap = HashMap<String, Bug>
+
 data class Bug (
     val id: Long,
 
