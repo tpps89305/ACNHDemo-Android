@@ -12,5 +12,4 @@ import androidx.annotation.DrawableRes
 class AvailableNowInfo(
     @DrawableRes val iconRes: Int,
     var amount: String,
-    val title: String
 )

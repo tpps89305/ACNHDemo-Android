@@ -18,7 +18,7 @@
             android:id="@+id/imageIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@color/daily_icon_background"
+            android:background="@drawable/style_daily_task_button_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

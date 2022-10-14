@@ -30,17 +30,15 @@ class DashboardFragment : BaseFragment() {
         val items = arrayOf(
             AvailableNowInfo(
                 R.drawable.icon_fish,
-                "0", resources.getString(R.string.fishes)
+                "0",
             ),
             AvailableNowInfo(
                 R.drawable.icon_sea_creature,
                 "0",
-                resources.getString(R.string.sea_creatures)
             ),
             AvailableNowInfo(
                 R.drawable.icon_bug,
                 "0",
-                resources.getString(R.string.bugs)
             )
         )
         AvailableNowAdapter(items)

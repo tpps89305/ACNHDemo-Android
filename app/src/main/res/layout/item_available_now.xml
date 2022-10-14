@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageAvailable"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -30,27 +30,16 @@
             android:id="@+id/textAvailableAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@{availableNowInfo.amount}"
-            android:textColor="@color/primary_text_color"
+            android:textColor="@color/primary_dark_green"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageAvailable"
             tools:text="87" />
-
-        <TextView
-            android:id="@+id/textAvailableTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@{availableNowInfo.title}"
-            android:textColor="@color/primary_text_color"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textAvailableAmount"
-            tools:text="Bugs" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
