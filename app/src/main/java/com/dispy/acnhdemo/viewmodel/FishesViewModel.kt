@@ -1,19 +1,15 @@
 package com.dispy.acnhdemo.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dispy.acnhdemo.model.DateHandler
 import com.dispy.acnhdemo.model.bean.Fish
 import com.dispy.acnhdemo.repository.NetworkRepository
-import com.google.gson.reflect.TypeToken
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FishesViewModel : ViewModel() {
+
+    private var isAvailableNow: Boolean = false
 
     private val fishes: MutableLiveData<List<Fish>> by lazy {
         MutableLiveData<List<Fish>>().also {
@@ -21,7 +17,8 @@ class FishesViewModel : ViewModel() {
         }
     }
 
-    fun getFishes(): LiveData<List<Fish>> {
+    fun getFishes(isAvailableNow: Boolean): LiveData<List<Fish>> {
+        this.isAvailableNow = isAvailableNow
         return fishes
     }
 
@@ -36,7 +33,19 @@ class FishesViewModel : ViewModel() {
         val repository = NetworkRepository()
         repository.fetchFishes(object : NetworkRepository.ResponseListener<List<Fish>>{
             override fun onResponse(response: List<Fish>) {
-                fishes.value = response
+                if (isAvailableNow) {
+                    val currentMonth = DateHandler.getCurrentMonth()
+                    val currentHour = DateHandler.getCurrentHour()
+                    fishes.value = response.filter {
+                        if (it.availability.monthArrayNorthern.contains(currentMonth) || it.availability.isAllYear) {
+                            it.availability.timeArray.contains(currentHour) || it.availability.isAllDay
+                        } else {
+                            false
+                        }
+                    } as ArrayList<Fish>
+                } else {
+                    fishes.value = response
+                }
             }
         })
     }

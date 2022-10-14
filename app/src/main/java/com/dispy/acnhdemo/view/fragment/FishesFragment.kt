@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
@@ -18,6 +19,7 @@ class FishesFragment : BaseFragment() {
     private lateinit var viewModel: FishesViewModel
     private val fishesAdapter = CommonAdapter(ArrayList())
     private lateinit var binding: FragmentFishesBinding
+    private val args: FishesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +37,7 @@ class FishesFragment : BaseFragment() {
             adapter = fishesAdapter
         }
 
-        viewModel.getFishes().observe(viewLifecycleOwner) { data ->
+        viewModel.getFishes(args.isAvailableNow).observe(viewLifecycleOwner) { data ->
             fishesAdapter.swapItems(data)
         }
 

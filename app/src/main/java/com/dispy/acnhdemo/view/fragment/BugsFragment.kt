@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentBugsBinding
@@ -16,6 +17,7 @@ class BugsFragment : BaseFragment() {
     private lateinit var binding: FragmentBugsBinding
     private lateinit var viewModel: BugsViewModel
     private val bugsAdapter = CommonAdapter(ArrayList())
+    private val args: BugsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,14 +25,14 @@ class BugsFragment : BaseFragment() {
     ): View {
         binding = FragmentBugsBinding.inflate(layoutInflater)
         initActionBar("Bugs")
-        viewModel = ViewModelProvider(this).get(BugsViewModel::class.java)
+        viewModel = ViewModelProvider(this)[BugsViewModel::class.java]
 
         with(binding.listBugs) {
             layoutManager = LinearLayoutManager(context)
             adapter = bugsAdapter
         }
 
-        viewModel.getBugs().observe(viewLifecycleOwner) { data ->
+        viewModel.getBugs(args.isAvailableNow).observe(viewLifecycleOwner) { data ->
             bugsAdapter.swapItems(data)
         }
 

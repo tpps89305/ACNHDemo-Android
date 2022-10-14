@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentSeaCreaturesBinding
@@ -17,6 +17,7 @@ class SeaCreaturesFragment : BaseFragment() {
     private lateinit var viewModel: SeaCreaturesViewModel
     private lateinit var binding: FragmentSeaCreaturesBinding
     private val seaCreaturesAdapter = CommonAdapter(ArrayList())
+    private val args: FishesFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,14 +25,14 @@ class SeaCreaturesFragment : BaseFragment() {
     ): View {
         binding = FragmentSeaCreaturesBinding.inflate(layoutInflater)
         initActionBar("Sea Creatures")
-        viewModel = ViewModelProvider(this).get(SeaCreaturesViewModel::class.java)
+        viewModel = ViewModelProvider(this)[SeaCreaturesViewModel::class.java]
 
         with(binding.listSeaCreatures) {
             layoutManager = LinearLayoutManager(context)
             adapter = seaCreaturesAdapter
         }
 
-        viewModel.getSeaCreatures().observe(viewLifecycleOwner) { data ->
+        viewModel.getSeaCreatures(args.isAvailableNow).observe(viewLifecycleOwner) { data ->
             seaCreaturesAdapter.swapItems(data)
         }
 

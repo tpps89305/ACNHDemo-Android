@@ -6,6 +6,15 @@
     app:startDestination="@id/dashboardFragment">
 
     <fragment
+        android:id="@+id/birthdayVillagerDetail"
+        android:name="com.dispy.acnhdemo.view.fragment.VillagerDetailFragment"
+        android:label="fragment_villager_detail"
+        tools:layout="@layout/fragment_villager_detail">
+        <argument
+            android:name="villager"
+            app:argType="com.dispy.acnhdemo.model.bean.Villager" />
+    </fragment>
+    <fragment
         android:id="@+id/villagersFragment"
         android:name="com.dispy.acnhdemo.view.fragment.VillagersFragment"
         android:label="fragment_villagers_list"
@@ -14,7 +23,9 @@
             android:id="@+id/action_show_villager_detail"
             app:destination="@id/villagerDetailFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/villagerDetailFragment"
@@ -34,41 +45,104 @@
             android:id="@+id/action_catalogFragment_to_songsFragment"
             app:destination="@id/navSong"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_fishesFragment"
-            app:destination="@id/navFish" />
+            app:destination="@id/navFish"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_seaCreaturesFragment"
-            app:destination="@id/navSeaCreature" />
+            app:destination="@id/navSeaCreature"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_bugsFragment"
-            app:destination="@id/navBug" />
+            app:destination="@id/navBug"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_fossilsFragment"
-            app:destination="@id/fossilsFragment" />
+            app:destination="@id/fossilsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_artFragment"
-            app:destination="@id/artFragment" />
+            app:destination="@id/artFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_BGMFragment"
-            app:destination="@id/BGMFragment" />
+            app:destination="@id/BGMFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_housewaresFragment"
-            app:destination="@id/navHousewares" />
+            app:destination="@id/navHousewares"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_catalogFragment_to_wallmountedFragment"
-            app:destination="@id/wallmountedFragment" />
+            app:destination="@id/wallmountedFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.dispy.acnhdemo.view.fragment.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_birthdayVillagerDetail"
+            app:destination="@id/birthdayVillagerDetail"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_navFish"
+            app:destination="@id/navFish"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_navSeaCreature"
+            app:destination="@id/navSeaCreature"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_navBug"
+            app:destination="@id/navBug" />
+    </fragment>
     <navigation
         android:id="@+id/navFish"
         android:label="Fish"
         app:startDestination="@id/fishesFragment">
+        <!-- Pass arguments to nested graph -->
+        <argument
+            android:name="isAvailableNow"
+            app:argType="boolean" />
         <fragment
             android:id="@+id/fishesFragment"
             android:name="com.dispy.acnhdemo.view.fragment.FishesFragment"
@@ -76,10 +150,17 @@
             tools:layout="@layout/fragment_fishes">
             <action
                 android:id="@+id/action_goto_fishDetailFragment"
-                app:destination="@id/fishDetailFragment" />
+                app:destination="@id/nowFishDetail"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            <argument
+                android:name="isAvailableNow"
+                app:argType="boolean" />
         </fragment>
         <fragment
-            android:id="@+id/fishDetailFragment"
+            android:id="@+id/nowFishDetail"
             android:name="com.dispy.acnhdemo.view.fragment.FishDetailFragment"
             android:label="fragment_fish_detail"
             tools:layout="@layout/fragment_fish_detail">
@@ -99,7 +180,11 @@
             tools:layout="@layout/fragment_songs">
             <action
                 android:id="@+id/action_songsFragment_to_songDetailFragment"
-                app:destination="@id/songDetailFragment" />
+                app:destination="@id/songDetailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         </fragment>
         <fragment
             android:id="@+id/songDetailFragment"
@@ -115,6 +200,9 @@
         android:id="@+id/navSeaCreature"
         android:label="SeaCreature"
         app:startDestination="@id/seaCreaturesFragment">
+        <argument
+            android:name="isAvailableNow"
+            app:argType="boolean" />
         <fragment
             android:id="@+id/seaCreaturesFragment"
             android:name="com.dispy.acnhdemo.view.fragment.SeaCreaturesFragment"
@@ -122,7 +210,13 @@
             tools:layout="@layout/fragment_sea_creatures">
             <action
                 android:id="@+id/action_seaCreaturesFragment_to_seaCreatureDetailFragment"
-                app:destination="@id/seaCreatureDetailFragment" />
+                app:destination="@id/seaCreatureDetailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            <argument android:name="isAvailableNow"
+                app:argType="boolean" />
         </fragment>
         <fragment
             android:id="@+id/seaCreatureDetailFragment"
@@ -136,6 +230,8 @@
     </navigation>
     <navigation android:id="@+id/navBug"
         app:startDestination="@id/bugsFragment">
+        <argument android:name="isAvailableNow"
+            app:argType="boolean" />
         <fragment
             android:id="@+id/bugDetailFragment"
             android:name="com.dispy.acnhdemo.view.fragment.BugDetailFragment"
@@ -152,7 +248,13 @@
             tools:layout="@layout/fragment_bugs">
             <action
                 android:id="@+id/action_bugsFragment_to_bugDetailFragment"
-                app:destination="@id/bugDetailFragment" />
+                app:destination="@id/bugDetailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            <argument android:name="isAvailableNow"
+                app:argType="boolean" />
         </fragment>
     </navigation>
     <fragment
@@ -188,7 +290,11 @@
             tools:layout="@layout/fragment_housewares">
             <action
                 android:id="@+id/action_housewaresFragment_to_housewareDetailFragment"
-                app:destination="@id/housewareDetailFragment" />
+                app:destination="@id/housewareDetailFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         </fragment>
     </navigation>
     <fragment
@@ -198,7 +304,11 @@
         tools:layout="@layout/fragment_wallmounted" >
         <action
             android:id="@+id/action_wallmountedFragment_to_wallmountedDetailFragment"
-            app:destination="@id/wallmountedDetailFragment" />
+            app:destination="@id/wallmountedDetailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
     <fragment
         android:id="@+id/wallmountedDetailFragment"

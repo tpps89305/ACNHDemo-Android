@@ -1,19 +1,14 @@
 package com.dispy.acnhdemo.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dispy.acnhdemo.model.DateHandler
 import com.dispy.acnhdemo.model.bean.SeaCreature
-import com.dispy.acnhdemo.model.bean.SeaCreaturesMap
 import com.dispy.acnhdemo.repository.NetworkRepository
-import com.google.gson.reflect.TypeToken
-import okhttp3.ResponseBody
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SeaCreaturesViewModel : ViewModelBase() {
+
+    private var isAvailableNow: Boolean = false
 
     private val seaCreatures: MutableLiveData<List<SeaCreature>> by lazy {
         MutableLiveData<List<SeaCreature>>().also {
@@ -21,7 +16,8 @@ class SeaCreaturesViewModel : ViewModelBase() {
         }
     }
 
-    fun getSeaCreatures(): LiveData<List<SeaCreature>> {
+    fun getSeaCreatures(isAvailableNow: Boolean): LiveData<List<SeaCreature>> {
+        this.isAvailableNow = isAvailableNow
         return seaCreatures
     }
 
@@ -36,7 +32,19 @@ class SeaCreaturesViewModel : ViewModelBase() {
         val repository = NetworkRepository()
         repository.fetchSeaCreatures(object : NetworkRepository.ResponseListener<List<SeaCreature>> {
             override fun onResponse(response: List<SeaCreature>) {
-                seaCreatures.value = response
+                if (isAvailableNow) {
+                    val currentMonth = DateHandler.getCurrentMonth()
+                    val currentHour = DateHandler.getCurrentHour()
+                    seaCreatures.value = response.filter {
+                        if (it.availability.monthArrayNorthern.contains(currentMonth) || it.availability.isAllYear) {
+                            it.availability.timeArray.contains(currentHour) || it.availability.isAllDay
+                        } else {
+                            false
+                        }
+                    } as ArrayList<SeaCreature>
+                } else {
+                    seaCreatures.value = response
+                }
             }
         })
     }

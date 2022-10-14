@@ -52,9 +52,9 @@ class CatalogFragment : BaseFragment() {
             override fun onItemClick(position: Int) {
                 val action = when (position) {
                     0 -> CatalogFragmentDirections.actionCatalogFragmentToSongsFragment()
-                    1 -> CatalogFragmentDirections.actionCatalogFragmentToFishesFragment()
-                    2 -> CatalogFragmentDirections.actionCatalogFragmentToSeaCreaturesFragment()
-                    3 -> CatalogFragmentDirections.actionCatalogFragmentToBugsFragment()
+                    1 -> CatalogFragmentDirections.actionCatalogFragmentToFishesFragment(false)
+                    2 -> CatalogFragmentDirections.actionCatalogFragmentToSeaCreaturesFragment(false)
+                    3 -> CatalogFragmentDirections.actionCatalogFragmentToBugsFragment(false)
                     4 -> CatalogFragmentDirections.actionCatalogFragmentToFossilsFragment()
                     5 -> CatalogFragmentDirections.actionCatalogFragmentToArtFragment()
                     6 -> CatalogFragmentDirections.actionCatalogFragmentToBGMFragment()

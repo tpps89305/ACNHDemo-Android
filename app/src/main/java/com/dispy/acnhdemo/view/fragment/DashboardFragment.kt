@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import com.dispy.acnhdemo.ACNHApplication
 import com.dispy.acnhdemo.R
 import com.dispy.acnhdemo.databinding.FragmentDashboardBinding
 import com.dispy.acnhdemo.model.bean.AvailableNowInfo
 import com.dispy.acnhdemo.model.bean.DailyTask
+import com.dispy.acnhdemo.model.bean.Villager
 import com.dispy.acnhdemo.view.adapter.AvailableNowAdapter
 import com.dispy.acnhdemo.view.adapter.BirthdayVillagerAdapter
 import com.dispy.acnhdemo.view.adapter.DailyTaskAdapter
@@ -104,6 +106,25 @@ class DashboardFragment : BaseFragment() {
                 dailyTaskDetailFragment.show(it1, "DailyTaskDetail")
             }
         }
+
+        birthdayVillagerAdapter.setOnItemClickListener(object : BirthdayVillagerAdapter.OnItemClickListener {
+            override fun onItemClick(villager: Villager) {
+                val action = DashboardFragmentDirections.actionDashboardFragmentToBirthdayVillagerDetail(villager)
+                binding.root.findNavController().navigate(action)
+            }
+        })
+
+        availableNowAdapter.setOnItemClickListener(object : AvailableNowAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val action = when (position) {
+                    0 -> DashboardFragmentDirections.actionDashboardFragmentToNavFish(true)
+                    1 -> DashboardFragmentDirections.actionDashboardFragmentToNavSeaCreature(true)
+                    2 -> DashboardFragmentDirections.actionDashboardFragmentToNavBug(true)
+                    else -> throw IllegalArgumentException("Cannot find the catalog $position")
+                }
+                binding.root.findNavController().navigate(action)
+            }
+        })
 
         return binding.root
     }
