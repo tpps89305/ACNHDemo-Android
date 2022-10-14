@@ -1,9 +1,10 @@
 package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.Song
 
-class SongDetailViewModel : ViewModelBase() {
+class SongDetailViewModel : ViewModel() {
 
     private val song : MutableLiveData<Song> = MutableLiveData()
 

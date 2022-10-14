@@ -1,6 +1,7 @@
 package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.Bug
 import com.dispy.acnhdemo.model.bean.TitleContentPair
 
@@ -12,7 +13,7 @@ import com.dispy.acnhdemo.model.bean.TitleContentPair
  * Created by Dispy on 2021/09/12
  * tpps89305@hotmail.com
  */
-class BugDetailViewModel : ViewModelBase() {
+class BugDetailViewModel : ViewModel() {
 
     private val arrayBugInfo: MutableLiveData<List<TitleContentPair>> = MutableLiveData()
 

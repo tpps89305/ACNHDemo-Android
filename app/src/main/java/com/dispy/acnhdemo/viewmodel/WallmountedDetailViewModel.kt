@@ -1,9 +1,10 @@
 package com.dispy.acnhdemo.viewmodel
 
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.TitleContentPair
 import com.dispy.acnhdemo.model.bean.Wallmounted
 
-class WallmountedDetailViewModel : ViewModelBase() {
+class WallmountedDetailViewModel : ViewModel() {
 
     fun getDetailInfo(wallmounted: Wallmounted): ArrayList<TitleContentPair> {
         val listDetailItems = ArrayList<TitleContentPair>()

@@ -21,7 +21,7 @@ import retrofit2.Response
  * Created by Dispy on 2021/10/02
  * tpps89305@hotmail.com
  */
-class DashboardViewModel(private val repository: DatabaseRepository) : ViewModelBase() {
+class DashboardViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
     private val availableFishes: MutableLiveData<Int> by lazy {
         MutableLiveData<Int>().also {
@@ -112,31 +112,13 @@ class DashboardViewModel(private val repository: DatabaseRepository) : ViewModel
 
     private fun loadBirthdayVillager() {
         val today = DateHandler.getToday()
-        val call: Call<ResponseBody> = acnhService.getVillagers()
-        Log.d("Villagers", call.request().toString())
-        call.enqueue(object : Callback<ResponseBody> {
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()!!.string()
-                Log.d("Villagers", data)
-                var listVillagers = ArrayList<Villager>()
-                val jsonVillagers = JSONObject(data)
-                for (eachKey in jsonVillagers.keys()) {
-                    val eachObject = jsonVillagers.optJSONObject(eachKey)!!
-                    listVillagers.add(gson.fromJson(eachObject.toString(), object : TypeToken<Villager>() {}.type))
-                }
-                listVillagers = listVillagers.filter {
+        networkRepository.fetchVillagers(object : NetworkRepository.ResponseListener<List<Villager>> {
+            override fun onResponse(response: List<Villager>) {
+                val listVillagers = response.filter {
                     it.birthday == today
                 } as ArrayList<Villager>
                 birthdayVillagers.value = listVillagers
-                Log.i("Villagers", "Get birthday villagers success: ${listVillagers.size}")
             }
-
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.w("Villagers", "Error when get villagers")
-                Log.w("Villagers", t.message!!)
-                birthdayVillagers.value = ArrayList()
-            }
-
         })
     }
 

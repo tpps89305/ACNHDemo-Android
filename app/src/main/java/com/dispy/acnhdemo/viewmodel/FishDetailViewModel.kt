@@ -1,10 +1,11 @@
 package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.Fish
 import com.dispy.acnhdemo.model.bean.TitleContentPair
 
-class FishDetailViewModel : ViewModelBase() {
+class FishDetailViewModel : ViewModel() {
 
     private val arrayFishInfo: MutableLiveData<List<TitleContentPair>> = MutableLiveData()
 

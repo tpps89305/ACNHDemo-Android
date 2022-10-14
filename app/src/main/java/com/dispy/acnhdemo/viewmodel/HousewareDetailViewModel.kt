@@ -1,9 +1,10 @@
 package com.dispy.acnhdemo.viewmodel
 
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.Houseware
 import com.dispy.acnhdemo.model.bean.TitleContentPair
 
-class HousewareDetailViewModel : ViewModelBase() {
+class HousewareDetailViewModel : ViewModel() {
 
     fun getDetailInfo(houseware: Houseware): ArrayList<TitleContentPair> {
         val listDetailItems = ArrayList<TitleContentPair>()

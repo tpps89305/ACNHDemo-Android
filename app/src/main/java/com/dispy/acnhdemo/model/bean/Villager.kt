@@ -3,6 +3,8 @@ package com.dispy.acnhdemo.model.bean
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+typealias VillagersMap = HashMap<String, Villager>
+
 data class Villager (
     val id: Long,
     @SerializedName("file-name") val fileName: String,

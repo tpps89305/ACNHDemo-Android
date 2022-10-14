@@ -2,10 +2,11 @@ package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.bean.Houseware
 import com.dispy.acnhdemo.repository.NetworkRepository
 
-class HousewaresViewModel : ViewModelBase() {
+class HousewaresViewModel : ViewModel() {
 
     private val housewares: MutableLiveData<List<Houseware>> by lazy {
         MutableLiveData<List<Houseware>>().also {

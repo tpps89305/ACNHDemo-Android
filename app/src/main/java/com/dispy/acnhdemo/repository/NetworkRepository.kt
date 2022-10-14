@@ -36,6 +36,26 @@ class NetworkRepository {
         fun onResponse(response: T)
     }
 
+    fun fetchVillagers(listener: ResponseListener<List<Villager>>) {
+        val call: Call<VillagersMap> = acnhService.getVillagers()
+        call.enqueue(object : Callback<VillagersMap> {
+            override fun onResponse(call: Call<VillagersMap>, response: Response<VillagersMap>) {
+                val data = response.body()!!
+                val listVillagers = ArrayList<Villager>()
+                for (eachKey in data.keys) {
+                    listVillagers.add(data[eachKey]!!)
+                }
+                listener.onResponse(listVillagers)
+                Log.i("NetworkRepository", "Got ${listVillagers.size} villagers")
+            }
+
+            override fun onFailure(call: Call<VillagersMap>, t: Throwable) {
+                Log.w("NetworkRepository", "Cannot get villagers", t)
+            }
+
+        })
+    }
+
     fun fetchSongs(listener: ResponseListener<List<Song>>) {
         val call: Call<SongsMap> = acnhService.getSongs()
         call.enqueue(object : Callback<SongsMap> {

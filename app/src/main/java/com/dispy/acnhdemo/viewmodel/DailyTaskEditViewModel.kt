@@ -1,6 +1,7 @@
 package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.dispy.acnhdemo.repository.DatabaseRepository
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
  * @author yangchaofu
  * @since 2022/2/4
  */
-class DailyTaskEditViewModel(private val repository: DatabaseRepository) : ViewModelBase() {
+class DailyTaskEditViewModel(private val repository: DatabaseRepository) : ViewModel() {
 
     fun getDailyTask(uid: Int): LiveData<DailyTask> {
         return repository.getDailyTask(uid).asLiveData()

@@ -2,11 +2,12 @@ package com.dispy.acnhdemo.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.dispy.acnhdemo.model.DateHandler
 import com.dispy.acnhdemo.model.bean.SeaCreature
 import com.dispy.acnhdemo.repository.NetworkRepository
 
-class SeaCreaturesViewModel : ViewModelBase() {
+class SeaCreaturesViewModel : ViewModel() {
 
     private var isAvailableNow: Boolean = false
 
