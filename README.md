@@ -47,11 +47,13 @@ Functions to browse villagers, catalog.
 Dashboard's function.
 
 # Technical Specifications
-- Language: Kotlin 1.5.30
-- IDE: Android Studio - Arctic Fox
-- Package Management: Gradle
+- Language: Kotlin 1.8.20
+- IDE: Android Studio - Flamingo
 
 # Package Used
-- Androidx Navigation 2.3.5
+- AndroidX Navigation 2.5.3
+- AndroidX Lifecycle 2.6.1
+- AndroidX Coroutines 1.5.0
+- AndroidX Room 2.5.1
 - Retrofit 2.5
 - Coil 1.2.2
