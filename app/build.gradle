@@ -28,6 +28,11 @@ android {
         dataBinding true
         viewBinding true
     }
+    namespace 'com.dispy.acnhdemo'
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 }
 
 dependencies {
